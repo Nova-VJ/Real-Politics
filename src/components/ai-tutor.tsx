@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import { useServerFn } from '@tanstack/react-start'
-import { Loader2, MessageCircle, Send, Sparkles, X } from 'lucide-react'
+import { Loader2, Send, X } from 'lucide-react'
 import { askTutor } from '@/lib/ai.functions'
+import tutorAvatar from '@/assets/tutor-avatar.png.asset.json'
 import { Button } from './ui/button'
 
 type Msg = { role: 'user' | 'assistant'; content: string }
