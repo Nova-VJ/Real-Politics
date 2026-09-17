@@ -14,6 +14,54 @@ export type Database = {
   }
   public: {
     Tables: {
+      courses: {
+        Row: {
+          area: string
+          cover_url: string | null
+          created_at: string
+          created_by: string | null
+          description: string | null
+          id: string
+          language: string
+          level: string
+          published: boolean
+          slug: string
+          subarea: string | null
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          area?: string
+          cover_url?: string | null
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          id?: string
+          language?: string
+          level?: string
+          published?: boolean
+          slug: string
+          subarea?: string | null
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          area?: string
+          cover_url?: string | null
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          id?: string
+          language?: string
+          level?: string
+          published?: boolean
+          slug?: string
+          subarea?: string | null
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       knowledge_levels: {
         Row: {
           area: string
@@ -43,6 +91,59 @@ export type Database = {
           xp?: number
         }
         Relationships: []
+      }
+      lessons: {
+        Row: {
+          content: Json
+          course_id: string | null
+          created_at: string
+          created_by: string | null
+          duration_minutes: number
+          id: string
+          position: number
+          published: boolean
+          slug: string
+          summary: string | null
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          content?: Json
+          course_id?: string | null
+          created_at?: string
+          created_by?: string | null
+          duration_minutes?: number
+          id?: string
+          position?: number
+          published?: boolean
+          slug: string
+          summary?: string | null
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          content?: Json
+          course_id?: string | null
+          created_at?: string
+          created_by?: string | null
+          duration_minutes?: number
+          id?: string
+          position?: number
+          published?: boolean
+          slug?: string
+          summary?: string | null
+          title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "lessons_course_id_fkey"
+            columns: ["course_id"]
+            isOneToOne: false
+            referencedRelation: "courses"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       profiles: {
         Row: {

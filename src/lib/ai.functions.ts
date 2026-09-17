@@ -68,18 +68,51 @@ export const askTutor = createServerFn({ method: 'POST' })
 Responde en español, en menos de 180 palabras, con tono cercano y didáctico.
 Estructura: idea principal, un ejemplo concreto, y una frase de "error típico" cuando aplique.
 Nunca inventes datos ni cifras; si no lo sabes, dilo.${data.context ? `\nContexto de la lección actual: ${data.context}` : ''}`
-    const res = await fetch(`${GATEWAY}/chat/completions`, {
+    const res = await fetch(`${GATEWAY}/responses`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Lovable-API-Key': key, 'X-Lovable-AIG-SDK': 'fetch' },
       body: JSON.stringify({
-        model: 'google/gemini-3.8-flash',
-        messages: [{ role: 'system', content: system }, ...(data.history ?? []), { role: 'user', content: data.question }],
+        model: 'openai/gpt-6-astra',
+        stream: true,
+        store: false,
+        reasoning: { effort: 'low', summary: 'auto' },
+        instructions: system,
+        input: [
+          ...(data.history ?? []).map((m) => ({
+            role: m.role,
+            content: [{ type: m.role === 'assistant' ? 'output_text' : 'input_text', text: m.content }],
+          })),
+          { role: 'user', content: [{ type: 'input_text', text: data.question }] },
+        ],
       }),
     })
-    if (!res.ok) {
+    if (!res.ok || !res.body) {
       const body = await res.text()
       throw new Error(res.status === 429 ? 'Demasiadas preguntas seguidas, espera unos segundos.' : res.status === 402 ? 'Se agotaron los créditos de IA de la app.' : `El tutor no está disponible (${res.status}): ${body.slice(0, 180)}`)
     }
-    const json = (await res.json()) as { choices?: { message?: { content?: string } }[] }
-    return { answer: json.choices?.[0]?.message?.content ?? 'No he podido responder esta vez.' }
+    const reader = res.body.getReader()
+    const decoder = new TextDecoder()
+    let buffer = ''
+    let answer = ''
+    let reasoning = ''
+    for (;;) {
+      const { done, value } = await reader.read()
+      if (done) break
+      buffer += decoder.decode(value, { stream: true })
+      const lines = buffer.split('\n')
+      buffer = lines.pop() ?? ''
+      for (const line of lines) {
+        if (!line.startsWith('data:')) continue
+        const payload = line.slice(5).trim()
+        if (!payload || payload === '[DONE]') continue
+        try {
+          const evt = JSON.parse(payload) as { type?: string; delta?: string }
+          if (evt.type === 'response.output_text.delta' && evt.delta) answer += evt.delta
+          else if (evt.type === 'response.reasoning_summary_text.delta' && evt.delta) reasoning += evt.delta
+        } catch {
+          /* ignora fragmentos incompletos */
+        }
+      }
+    }
+    return { answer: answer.trim() || reasoning.trim() || 'No he podido responder esta vez.' }
   })

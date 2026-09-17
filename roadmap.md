@@ -17,3 +17,8 @@
 ## Pendiente
 - Animar el resto de lecciones y extender la biblioteca gráfica
 - Contenido del panel de administración conectado a la base de datos
+
+## Sprint backend admin (completado)
+- Tablas `courses` y `lessons` con RLS: lectura pública de lo publicado, escritura solo admins.
+- Panel /admin real: alta de usuarios, roles admin/estudiante, creación y publicación de cursos y lecciones.
+- Tutor IA con modelo openai/gpt-6-astra (streaming) y logo propio.

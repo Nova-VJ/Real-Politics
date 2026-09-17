@@ -1,1 +1,17 @@
-import{createFileRoute}from'@tanstack/react-router';import{AdminPlaceholder}from'@/components/admin-shell';export const Route=createFileRoute('/admin/courses')({head:()=>({meta:[{title:'Courses Admin — REALPOLITICS'},{name:'description',content:'Manage REALPOLITICS courses.'},{property:'og:title',content:'Courses Admin — REALPOLITICS'},{property:'og:description',content:'Editorial management workspace.'},{property:'og:type',content:'website'},{name:'twitter:card',content:'summary_large_image'}]}),component:()=> <AdminPlaceholder title="Courses"/>})
+import { createFileRoute } from '@tanstack/react-router'
+import { AdminCourses } from '@/components/admin-content'
+
+export const Route = createFileRoute('/admin/courses')({
+  ssr: false,
+  head: () => ({
+    meta: [
+      { title: 'Cursos — Admin REALPOLITICS' },
+      { name: 'description', content: 'Crea y publica tus propios cursos en REALPOLITICS.' },
+      { property: 'og:title', content: 'Cursos — Admin REALPOLITICS' },
+      { property: 'og:description', content: 'Crea y publica tus propios cursos.' },
+      { property: 'og:type', content: 'website' },
+      { name: 'twitter:card', content: 'summary_large_image' },
+    ],
+  }),
+  component: AdminCourses,
+})

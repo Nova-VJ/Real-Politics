@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import { useServerFn } from '@tanstack/react-start'
-import { Loader2, MessageCircle, Send, Sparkles, X } from 'lucide-react'
+import { Loader2, Send, X } from 'lucide-react'
 import { askTutor } from '@/lib/ai.functions'
+import tutorAvatar from '@/assets/tutor-avatar.png.asset.json'
 import { Button } from './ui/button'
 
 type Msg = { role: 'user' | 'assistant'; content: string }
@@ -40,14 +41,14 @@ export function AiTutor({ context }: { context?: string }) {
         aria-label="Abrir tutor de IA"
         className="fixed bottom-20 right-4 z-40 flex items-center gap-2 rounded-full border border-primary/50 bg-popover px-4 py-3 text-sm shadow-lg md:bottom-6"
       >
-        <Sparkles className="size-4 text-primary" /> Tutor IA
+        <img src={tutorAvatar.url} alt="" className="size-7 rounded-full object-cover" /> Tutor IA
       </button>
     )
 
   return (
     <div className="fixed bottom-20 right-4 z-40 flex h-[32rem] w-[min(94vw,24rem)] flex-col rounded-xl border border-border bg-popover shadow-2xl md:bottom-6">
       <header className="flex items-center justify-between border-b border-border px-4 py-3">
-        <span className="flex items-center gap-2 text-sm font-semibold"><MessageCircle className="size-4 text-primary" /> Tutor REALPOLITICS</span>
+        <span className="flex items-center gap-2 text-sm font-semibold"><img src={tutorAvatar.url} alt="" className="size-7 rounded-full object-cover" /> Tutor REALPOLITICS</span>
         <Button variant="ghost" size="icon" aria-label="Cerrar tutor" onClick={() => setOpen(false)}><X className="size-4" /></Button>
       </header>
       <div className="flex-1 space-y-3 overflow-y-auto p-4 text-sm">
