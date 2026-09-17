@@ -1,7 +1,7 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from 'react'
 import type { Session, User } from '@supabase/supabase-js'
 import { supabase } from '@/integrations/supabase/client'
-import { lovable } from '@/integrations/lovable/index'
+// lovable import eliminado — usamos Supabase OAuth directamente para Cloudflare Pages
 
 export type Role = 'admin' | 'student'
 export type Profile = { id: string; display_name: string | null; avatar_url: string | null; language: string; xp: number; streak: number }
@@ -71,14 +71,16 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       const { error } = await supabase.auth.signInWithPassword({ email, password })
       return error?.message ?? null
     },
+    // Usa Supabase OAuth directamente — no necesita /~oauth/initiate de Lovable
     signInWithGoogle: async () => {
       try {
-        const result = (await lovable.auth.signInWithOAuth('google', {
-          redirect_uri: window.location.origin,
-        })) as { error?: { message?: string } | string } | undefined
-        const err = result?.error
-        if (err) return typeof err === 'string' ? err : (err.message ?? 'No se pudo iniciar sesión con Google')
-        return null
+        const { error } = await supabase.auth.signInWithOAuth({
+          provider: 'google',
+          options: {
+            redirectTo: window.location.origin,
+          },
+        })
+        return error?.message ?? null
       } catch (e) {
         return e instanceof Error ? e.message : 'No se pudo iniciar sesión con Google'
       }
