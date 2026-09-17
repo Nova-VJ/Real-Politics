@@ -17,7 +17,7 @@ const toneMap: Record<string, string> = {
 
 const NarrateInput = z.object({
   text: z.string().min(1).max(2200),
-  voice: z.enum(['femenina', 'masculina', 'epica']).default('didactico' as never).catch('femenina'),
+  voice: z.enum(['femenina', 'masculina', 'epica']).catch('femenina'),
   tone: z.enum(['narrativo', 'didactico', 'epico']).catch('didactico'),
   speed: z.number().min(0.8).max(1.3).catch(1),
 })

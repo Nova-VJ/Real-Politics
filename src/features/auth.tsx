@@ -72,9 +72,16 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       return error?.message ?? null
     },
     signInWithGoogle: async () => {
-      const result = await lovable.auth.signInWithOAuth('google', { redirect_uri: window.location.origin })
-      if (result.error) return typeof result.error === 'string' ? result.error : 'No se pudo iniciar sesión con Google'
-      return null
+      try {
+        const result = (await lovable.auth.signInWithOAuth('google', {
+          redirect_uri: window.location.origin,
+        })) as { error?: { message?: string } | string } | undefined
+        const err = result?.error
+        if (err) return typeof err === 'string' ? err : (err.message ?? 'No se pudo iniciar sesión con Google')
+        return null
+      } catch (e) {
+        return e instanceof Error ? e.message : 'No se pudo iniciar sesión con Google'
+      }
     },
     signOut: async () => { await supabase.auth.signOut() },
     setRole: async (role, enabled) => {
