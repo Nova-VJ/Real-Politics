@@ -2,6 +2,30 @@ import { createServerFn } from '@tanstack/react-start'
 import { z } from 'zod'
 
 const GATEWAY = 'https://ai.gateway.lovable.dev/v1'
+const OPENAI = 'https://api.openai.com/v1'
+
+/** Usa la clave propia de OpenAI si está configurada; si no, la pasarela de Lovable. */
+function aiProvider() {
+  const openaiKey = process.env['OPENAI_API_KEY']
+  if (openaiKey) {
+    return {
+      own: true as const,
+      base: OPENAI,
+      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${openaiKey}` },
+      chatModel: 'gpt-4.1',
+      ttsModel: 'gpt-4o-mini-tts',
+    }
+  }
+  const key = process.env['LOVABLE_API_KEY']
+  if (!key) throw new Error('Falta la clave de IA')
+  return {
+    own: false as const,
+    base: GATEWAY,
+    headers: { 'Content-Type': 'application/json', 'Lovable-API-Key': key, 'X-Lovable-AIG-SDK': 'fetch' },
+    chatModel: 'openai/gpt-6-astra',
+    ttsModel: 'google/gemini-3.1-flash-tts-preview',
+  }
+}
 
 const voiceMap: Record<string, string> = {
   femenina: 'Kore',
@@ -26,21 +50,32 @@ const NarrateInput = z.object({
 export const narrate = createServerFn({ method: 'POST' })
   .inputValidator((input: unknown) => NarrateInput.parse(input))
   .handler(async ({ data }) => {
-    const key = process.env['LOVABLE_API_KEY']
-    if (!key) throw new Error('Falta la clave de IA')
+    const p = aiProvider()
     const speed = data.speed < 0.95 ? 'un poco más lento de lo normal' : data.speed > 1.05 ? 'algo más ágil de lo normal' : 'a ritmo natural'
     const prompt = `${toneMap[data.tone]} Habla en español neutro, ${speed}, respetando las pausas de la puntuación.\n\n${data.text}`
-    const res = await fetch(`${GATEWAY}/audio/speech`, {
+    const openaiVoice: Record<string, string> = { femenina: 'shimmer', masculina: 'onyx', epica: 'ballad' }
+    const res = await fetch(`${p.base}/audio/speech`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Lovable-API-Key': key, 'X-Lovable-AIG-SDK': 'fetch' },
-      body: JSON.stringify({
-        model: 'google/gemini-3.1-flash-tts-preview',
-        contents: [{ role: 'user', parts: [{ text: prompt }] }],
-        generationConfig: {
-          responseModalities: ['AUDIO'],
-          speechConfig: { voiceConfig: { prebuiltVoiceConfig: { voiceName: voiceMap[data.voice] ?? 'Kore' } } },
-        },
-      }),
+      headers: p.headers,
+      body: JSON.stringify(
+        p.own
+          ? {
+              model: p.ttsModel,
+              voice: openaiVoice[data.voice] ?? 'shimmer',
+              input: data.text,
+              instructions: `${toneMap[data.tone]} Español neutro, ${speed}.`,
+              response_format: 'mp3',
+              speed: data.speed,
+            }
+          : {
+              model: p.ttsModel,
+              contents: [{ role: 'user', parts: [{ text: prompt }] }],
+              generationConfig: {
+                responseModalities: ['AUDIO'],
+                speechConfig: { voiceConfig: { prebuiltVoiceConfig: { voiceName: voiceMap[data.voice] ?? 'Kore' } } },
+              },
+            },
+      ),
     })
     if (!res.ok) {
       const body = await res.text()
@@ -49,7 +84,7 @@ export const narrate = createServerFn({ method: 'POST' })
     const buf = new Uint8Array(await res.arrayBuffer())
     let binary = ''
     for (let i = 0; i < buf.length; i += 8192) binary += String.fromCharCode(...buf.subarray(i, i + 8192))
-    return { audio: btoa(binary), mime: 'audio/wav' }
+    return { audio: btoa(binary), mime: p.own ? 'audio/mpeg' : 'audio/wav' }
   })
 
 const TutorInput = z.object({
@@ -62,20 +97,19 @@ const TutorInput = z.object({
 export const askTutor = createServerFn({ method: 'POST' })
   .inputValidator((input: unknown) => TutorInput.parse(input))
   .handler(async ({ data }) => {
-    const key = process.env['LOVABLE_API_KEY']
-    if (!key) throw new Error('Falta la clave de IA')
+    const p = aiProvider()
     const system = `Eres el tutor de REALPOLITICS, una plataforma para entender economía, política e historia.
 Responde en español, en menos de 180 palabras, con tono cercano y didáctico.
 Estructura: idea principal, un ejemplo concreto, y una frase de "error típico" cuando aplique.
 Nunca inventes datos ni cifras; si no lo sabes, dilo.${data.context ? `\nContexto de la lección actual: ${data.context}` : ''}`
-    const res = await fetch(`${GATEWAY}/responses`, {
+    const res = await fetch(`${p.base}/responses`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Lovable-API-Key': key, 'X-Lovable-AIG-SDK': 'fetch' },
+      headers: p.headers,
       body: JSON.stringify({
-        model: 'openai/gpt-6-astra',
+        model: p.chatModel,
         stream: true,
         store: false,
-        reasoning: { effort: 'low', summary: 'auto' },
+        ...(p.own ? {} : { reasoning: { effort: 'low', summary: 'auto' } }),
         instructions: system,
         input: [
           ...(data.history ?? []).map((m) => ({
