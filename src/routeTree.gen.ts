@@ -18,11 +18,14 @@ import { Route as HomeRouteImport } from './routes/home'
 import { Route as KnowledgeMapRouteImport } from './routes/knowledge-map'
 import { Route as LearnRouteImport } from './routes/learn'
 import { Route as LibraryRouteImport } from './routes/library'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as OnboardingRouteImport } from './routes/onboarding'
 import { Route as PathsRouteImport } from './routes/paths'
 import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as ReviewRouteImport } from './routes/review'
 import { Route as SearchRouteImport } from './routes/search'
 import { Route as SettingsRouteImport } from './routes/settings'
+import { Route as SignupRouteImport } from './routes/signup'
 import { Route as TimelineRouteImport } from './routes/timeline'
 import { Route as CategorySlugRouteImport } from './routes/category.$slug'
 import { Route as ConceptSlugRouteImport } from './routes/concept.$slug'
@@ -76,6 +79,16 @@ const LibraryRoute = LibraryRouteImport.update({
   path: '/library',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OnboardingRoute = OnboardingRouteImport.update({
+  id: '/onboarding',
+  path: '/onboarding',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PathsRoute = PathsRouteImport.update({
   id: '/paths',
   path: '/paths',
@@ -99,6 +112,11 @@ const SearchRoute = SearchRouteImport.update({
 const SettingsRoute = SettingsRouteImport.update({
   id: '/settings',
   path: '/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SignupRoute = SignupRouteImport.update({
+  id: '/signup',
+  path: '/signup',
   getParentRoute: () => rootRouteImport,
 } as any)
 const TimelineRoute = TimelineRouteImport.update({
@@ -147,11 +165,14 @@ export interface FileRoutesByFullPath {
   '/knowledge-map': typeof KnowledgeMapRoute
   '/learn': typeof LearnRoute
   '/library': typeof LibraryRoute
+  '/login': typeof LoginRoute
+  '/onboarding': typeof OnboardingRoute
   '/paths': typeof PathsRoute
   '/profile': typeof ProfileRoute
   '/review': typeof ReviewRoute
   '/search': typeof SearchRoute
   '/settings': typeof SettingsRoute
+  '/signup': typeof SignupRoute
   '/timeline': typeof TimelineRouteWithChildren
   '/category/$slug': typeof CategorySlugRoute
   '/concept/$slug': typeof ConceptSlugRoute
@@ -170,11 +191,14 @@ export interface FileRoutesByTo {
   '/knowledge-map': typeof KnowledgeMapRoute
   '/learn': typeof LearnRoute
   '/library': typeof LibraryRoute
+  '/login': typeof LoginRoute
+  '/onboarding': typeof OnboardingRoute
   '/paths': typeof PathsRoute
   '/profile': typeof ProfileRoute
   '/review': typeof ReviewRoute
   '/search': typeof SearchRoute
   '/settings': typeof SettingsRoute
+  '/signup': typeof SignupRoute
   '/timeline': typeof TimelineRouteWithChildren
   '/category/$slug': typeof CategorySlugRoute
   '/concept/$slug': typeof ConceptSlugRoute
@@ -194,11 +218,14 @@ export interface FileRoutesById {
   '/knowledge-map': typeof KnowledgeMapRoute
   '/learn': typeof LearnRoute
   '/library': typeof LibraryRoute
+  '/login': typeof LoginRoute
+  '/onboarding': typeof OnboardingRoute
   '/paths': typeof PathsRoute
   '/profile': typeof ProfileRoute
   '/review': typeof ReviewRoute
   '/search': typeof SearchRoute
   '/settings': typeof SettingsRoute
+  '/signup': typeof SignupRoute
   '/timeline': typeof TimelineRouteWithChildren
   '/category/$slug': typeof CategorySlugRoute
   '/concept/$slug': typeof ConceptSlugRoute
@@ -219,11 +246,14 @@ export interface FileRouteTypes {
     | '/knowledge-map'
     | '/learn'
     | '/library'
+    | '/login'
+    | '/onboarding'
     | '/paths'
     | '/profile'
     | '/review'
     | '/search'
     | '/settings'
+    | '/signup'
     | '/timeline'
     | '/category/$slug'
     | '/concept/$slug'
@@ -242,11 +272,14 @@ export interface FileRouteTypes {
     | '/knowledge-map'
     | '/learn'
     | '/library'
+    | '/login'
+    | '/onboarding'
     | '/paths'
     | '/profile'
     | '/review'
     | '/search'
     | '/settings'
+    | '/signup'
     | '/timeline'
     | '/category/$slug'
     | '/concept/$slug'
@@ -265,11 +298,14 @@ export interface FileRouteTypes {
     | '/knowledge-map'
     | '/learn'
     | '/library'
+    | '/login'
+    | '/onboarding'
     | '/paths'
     | '/profile'
     | '/review'
     | '/search'
     | '/settings'
+    | '/signup'
     | '/timeline'
     | '/category/$slug'
     | '/concept/$slug'
@@ -289,11 +325,14 @@ export interface RootRouteChildren {
   KnowledgeMapRoute: typeof KnowledgeMapRoute
   LearnRoute: typeof LearnRoute
   LibraryRoute: typeof LibraryRoute
+  LoginRoute: typeof LoginRoute
+  OnboardingRoute: typeof OnboardingRoute
   PathsRoute: typeof PathsRoute
   ProfileRoute: typeof ProfileRoute
   ReviewRoute: typeof ReviewRoute
   SearchRoute: typeof SearchRoute
   SettingsRoute: typeof SettingsRoute
+  SignupRoute: typeof SignupRoute
   TimelineRoute: typeof TimelineRouteWithChildren
   CategorySlugRoute: typeof CategorySlugRoute
   ConceptSlugRoute: typeof ConceptSlugRoute
@@ -367,6 +406,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LibraryRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/onboarding': {
+      id: '/onboarding'
+      path: '/onboarding'
+      fullPath: '/onboarding'
+      preLoaderRoute: typeof OnboardingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/paths': {
       id: '/paths'
       path: '/paths'
@@ -400,6 +453,13 @@ declare module '@tanstack/react-router' {
       path: '/settings'
       fullPath: '/settings'
       preLoaderRoute: typeof SettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/signup': {
+      id: '/signup'
+      path: '/signup'
+      fullPath: '/signup'
+      preLoaderRoute: typeof SignupRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/timeline': {
@@ -476,11 +536,14 @@ const rootRouteChildren: RootRouteChildren = {
   KnowledgeMapRoute: KnowledgeMapRoute,
   LearnRoute: LearnRoute,
   LibraryRoute: LibraryRoute,
+  LoginRoute: LoginRoute,
+  OnboardingRoute: OnboardingRoute,
   PathsRoute: PathsRoute,
   ProfileRoute: ProfileRoute,
   ReviewRoute: ReviewRoute,
   SearchRoute: SearchRoute,
   SettingsRoute: SettingsRoute,
+  SignupRoute: SignupRoute,
   TimelineRoute: TimelineRouteWithChildren,
   CategorySlugRoute: CategorySlugRoute,
   ConceptSlugRoute: ConceptSlugRoute,
