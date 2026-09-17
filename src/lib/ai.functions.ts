@@ -2,6 +2,30 @@ import { createServerFn } from '@tanstack/react-start'
 import { z } from 'zod'
 
 const GATEWAY = 'https://ai.gateway.lovable.dev/v1'
+const OPENAI = 'https://api.openai.com/v1'
+
+/** Usa la clave propia de OpenAI si está configurada; si no, la pasarela de Lovable. */
+function aiProvider() {
+  const openaiKey = process.env['OPENAI_API_KEY']
+  if (openaiKey) {
+    return {
+      own: true as const,
+      base: OPENAI,
+      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${openaiKey}` },
+      chatModel: 'gpt-4.1',
+      ttsModel: 'gpt-4o-mini-tts',
+    }
+  }
+  const key = process.env['LOVABLE_API_KEY']
+  if (!key) throw new Error('Falta la clave de IA')
+  return {
+    own: false as const,
+    base: GATEWAY,
+    headers: { 'Content-Type': 'application/json', 'Lovable-API-Key': key, 'X-Lovable-AIG-SDK': 'fetch' },
+    chatModel: 'openai/gpt-6-astra',
+    ttsModel: 'google/gemini-3.1-flash-tts-preview',
+  }
+}
 
 const voiceMap: Record<string, string> = {
   femenina: 'Kore',
