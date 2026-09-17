@@ -1,0 +1,7 @@
+# Cloudflare Pages routing
+# Las rutas del servidor (OAuth, server functions) pasan directamente
+/~oauth/*  /~oauth/:splat  200
+/_server/*  /_server/:splat  200
+
+# SPA fallback: todo lo demás sirve index.html
+/*  /index.html  200
