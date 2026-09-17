@@ -10,24 +10,50 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ChallengesRouteImport } from './routes/challenges'
+import { Route as Essential1000RouteImport } from './routes/essential-1000'
 import { Route as ExploreRouteImport } from './routes/explore'
+import { Route as GlossaryRouteImport } from './routes/glossary'
 import { Route as HomeRouteImport } from './routes/home'
 import { Route as KnowledgeMapRouteImport } from './routes/knowledge-map'
 import { Route as LearnRouteImport } from './routes/learn'
+import { Route as LibraryRouteImport } from './routes/library'
 import { Route as PathsRouteImport } from './routes/paths'
+import { Route as ProfileRouteImport } from './routes/profile'
+import { Route as ReviewRouteImport } from './routes/review'
+import { Route as SearchRouteImport } from './routes/search'
+import { Route as SettingsRouteImport } from './routes/settings'
+import { Route as TimelineRouteImport } from './routes/timeline'
 import { Route as CategorySlugRouteImport } from './routes/category.$slug'
+import { Route as ConceptSlugRouteImport } from './routes/concept.$slug'
 import { Route as CourseSlugRouteImport } from './routes/course.$slug'
 import { Route as LessonSlugRouteImport } from './routes/lesson.$slug'
 import { Route as PathSlugRouteImport } from './routes/path.$slug'
+import { Route as TimelineEventSlugRouteImport } from './routes/timeline.$eventSlug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ChallengesRoute = ChallengesRouteImport.update({
+  id: '/challenges',
+  path: '/challenges',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const Essential1000Route = Essential1000RouteImport.update({
+  id: '/essential-1000',
+  path: '/essential-1000',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ExploreRoute = ExploreRouteImport.update({
   id: '/explore',
   path: '/explore',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GlossaryRoute = GlossaryRouteImport.update({
+  id: '/glossary',
+  path: '/glossary',
   getParentRoute: () => rootRouteImport,
 } as any)
 const HomeRoute = HomeRouteImport.update({
@@ -45,14 +71,49 @@ const LearnRoute = LearnRouteImport.update({
   path: '/learn',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LibraryRoute = LibraryRouteImport.update({
+  id: '/library',
+  path: '/library',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PathsRoute = PathsRouteImport.update({
   id: '/paths',
   path: '/paths',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProfileRoute = ProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReviewRoute = ReviewRouteImport.update({
+  id: '/review',
+  path: '/review',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SearchRoute = SearchRouteImport.update({
+  id: '/search',
+  path: '/search',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TimelineRoute = TimelineRouteImport.update({
+  id: '/timeline',
+  path: '/timeline',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CategorySlugRoute = CategorySlugRouteImport.update({
   id: '/category/$slug',
   path: '/category/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConceptSlugRoute = ConceptSlugRouteImport.update({
+  id: '/concept/$slug',
+  path: '/concept/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CourseSlugRoute = CourseSlugRouteImport.update({
@@ -70,91 +131,172 @@ const PathSlugRoute = PathSlugRouteImport.update({
   path: '/path/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TimelineEventSlugRoute = TimelineEventSlugRouteImport.update({
+  id: '/$eventSlug',
+  path: '/$eventSlug',
+  getParentRoute: () => TimelineRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/challenges': typeof ChallengesRoute
+  '/essential-1000': typeof Essential1000Route
   '/explore': typeof ExploreRoute
+  '/glossary': typeof GlossaryRoute
   '/home': typeof HomeRoute
   '/knowledge-map': typeof KnowledgeMapRoute
   '/learn': typeof LearnRoute
+  '/library': typeof LibraryRoute
   '/paths': typeof PathsRoute
+  '/profile': typeof ProfileRoute
+  '/review': typeof ReviewRoute
+  '/search': typeof SearchRoute
+  '/settings': typeof SettingsRoute
+  '/timeline': typeof TimelineRouteWithChildren
   '/category/$slug': typeof CategorySlugRoute
+  '/concept/$slug': typeof ConceptSlugRoute
   '/course/$slug': typeof CourseSlugRoute
   '/lesson/$slug': typeof LessonSlugRoute
   '/path/$slug': typeof PathSlugRoute
+  '/timeline/$eventSlug': typeof TimelineEventSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/challenges': typeof ChallengesRoute
+  '/essential-1000': typeof Essential1000Route
   '/explore': typeof ExploreRoute
+  '/glossary': typeof GlossaryRoute
   '/home': typeof HomeRoute
   '/knowledge-map': typeof KnowledgeMapRoute
   '/learn': typeof LearnRoute
+  '/library': typeof LibraryRoute
   '/paths': typeof PathsRoute
+  '/profile': typeof ProfileRoute
+  '/review': typeof ReviewRoute
+  '/search': typeof SearchRoute
+  '/settings': typeof SettingsRoute
+  '/timeline': typeof TimelineRouteWithChildren
   '/category/$slug': typeof CategorySlugRoute
+  '/concept/$slug': typeof ConceptSlugRoute
   '/course/$slug': typeof CourseSlugRoute
   '/lesson/$slug': typeof LessonSlugRoute
   '/path/$slug': typeof PathSlugRoute
+  '/timeline/$eventSlug': typeof TimelineEventSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/challenges': typeof ChallengesRoute
+  '/essential-1000': typeof Essential1000Route
   '/explore': typeof ExploreRoute
+  '/glossary': typeof GlossaryRoute
   '/home': typeof HomeRoute
   '/knowledge-map': typeof KnowledgeMapRoute
   '/learn': typeof LearnRoute
+  '/library': typeof LibraryRoute
   '/paths': typeof PathsRoute
+  '/profile': typeof ProfileRoute
+  '/review': typeof ReviewRoute
+  '/search': typeof SearchRoute
+  '/settings': typeof SettingsRoute
+  '/timeline': typeof TimelineRouteWithChildren
   '/category/$slug': typeof CategorySlugRoute
+  '/concept/$slug': typeof ConceptSlugRoute
   '/course/$slug': typeof CourseSlugRoute
   '/lesson/$slug': typeof LessonSlugRoute
   '/path/$slug': typeof PathSlugRoute
+  '/timeline/$eventSlug': typeof TimelineEventSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/challenges'
+    | '/essential-1000'
     | '/explore'
+    | '/glossary'
     | '/home'
     | '/knowledge-map'
     | '/learn'
+    | '/library'
     | '/paths'
+    | '/profile'
+    | '/review'
+    | '/search'
+    | '/settings'
+    | '/timeline'
     | '/category/$slug'
+    | '/concept/$slug'
     | '/course/$slug'
     | '/lesson/$slug'
     | '/path/$slug'
+    | '/timeline/$eventSlug'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/challenges'
+    | '/essential-1000'
     | '/explore'
+    | '/glossary'
     | '/home'
     | '/knowledge-map'
     | '/learn'
+    | '/library'
     | '/paths'
+    | '/profile'
+    | '/review'
+    | '/search'
+    | '/settings'
+    | '/timeline'
     | '/category/$slug'
+    | '/concept/$slug'
     | '/course/$slug'
     | '/lesson/$slug'
     | '/path/$slug'
+    | '/timeline/$eventSlug'
   id:
     | '__root__'
     | '/'
+    | '/challenges'
+    | '/essential-1000'
     | '/explore'
+    | '/glossary'
     | '/home'
     | '/knowledge-map'
     | '/learn'
+    | '/library'
     | '/paths'
+    | '/profile'
+    | '/review'
+    | '/search'
+    | '/settings'
+    | '/timeline'
     | '/category/$slug'
+    | '/concept/$slug'
     | '/course/$slug'
     | '/lesson/$slug'
     | '/path/$slug'
+    | '/timeline/$eventSlug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ChallengesRoute: typeof ChallengesRoute
+  Essential1000Route: typeof Essential1000Route
   ExploreRoute: typeof ExploreRoute
+  GlossaryRoute: typeof GlossaryRoute
   HomeRoute: typeof HomeRoute
   KnowledgeMapRoute: typeof KnowledgeMapRoute
   LearnRoute: typeof LearnRoute
+  LibraryRoute: typeof LibraryRoute
   PathsRoute: typeof PathsRoute
+  ProfileRoute: typeof ProfileRoute
+  ReviewRoute: typeof ReviewRoute
+  SearchRoute: typeof SearchRoute
+  SettingsRoute: typeof SettingsRoute
+  TimelineRoute: typeof TimelineRouteWithChildren
   CategorySlugRoute: typeof CategorySlugRoute
+  ConceptSlugRoute: typeof ConceptSlugRoute
   CourseSlugRoute: typeof CourseSlugRoute
   LessonSlugRoute: typeof LessonSlugRoute
   PathSlugRoute: typeof PathSlugRoute
@@ -169,11 +311,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/challenges': {
+      id: '/challenges'
+      path: '/challenges'
+      fullPath: '/challenges'
+      preLoaderRoute: typeof ChallengesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/essential-1000': {
+      id: '/essential-1000'
+      path: '/essential-1000'
+      fullPath: '/essential-1000'
+      preLoaderRoute: typeof Essential1000RouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/explore': {
       id: '/explore'
       path: '/explore'
       fullPath: '/explore'
       preLoaderRoute: typeof ExploreRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/glossary': {
+      id: '/glossary'
+      path: '/glossary'
+      fullPath: '/glossary'
+      preLoaderRoute: typeof GlossaryRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/home': {
@@ -197,6 +360,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LearnRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/library': {
+      id: '/library'
+      path: '/library'
+      fullPath: '/library'
+      preLoaderRoute: typeof LibraryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/paths': {
       id: '/paths'
       path: '/paths'
@@ -204,11 +374,53 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PathsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/profile': {
+      id: '/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof ProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/review': {
+      id: '/review'
+      path: '/review'
+      fullPath: '/review'
+      preLoaderRoute: typeof ReviewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/search': {
+      id: '/search'
+      path: '/search'
+      fullPath: '/search'
+      preLoaderRoute: typeof SearchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/timeline': {
+      id: '/timeline'
+      path: '/timeline'
+      fullPath: '/timeline'
+      preLoaderRoute: typeof TimelineRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/category/$slug': {
       id: '/category/$slug'
       path: '/category/$slug'
       fullPath: '/category/$slug'
       preLoaderRoute: typeof CategorySlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/concept/$slug': {
+      id: '/concept/$slug'
+      path: '/concept/$slug'
+      fullPath: '/concept/$slug'
+      preLoaderRoute: typeof ConceptSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/course/$slug': {
@@ -232,17 +444,46 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PathSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/timeline/$eventSlug': {
+      id: '/timeline/$eventSlug'
+      path: '/$eventSlug'
+      fullPath: '/timeline/$eventSlug'
+      preLoaderRoute: typeof TimelineEventSlugRouteImport
+      parentRoute: typeof TimelineRoute
+    }
   }
 }
 
+interface TimelineRouteChildren {
+  TimelineEventSlugRoute: typeof TimelineEventSlugRoute
+}
+
+const TimelineRouteChildren: TimelineRouteChildren = {
+  TimelineEventSlugRoute: TimelineEventSlugRoute,
+}
+
+const TimelineRouteWithChildren = TimelineRoute._addFileChildren(
+  TimelineRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ChallengesRoute: ChallengesRoute,
+  Essential1000Route: Essential1000Route,
   ExploreRoute: ExploreRoute,
+  GlossaryRoute: GlossaryRoute,
   HomeRoute: HomeRoute,
   KnowledgeMapRoute: KnowledgeMapRoute,
   LearnRoute: LearnRoute,
+  LibraryRoute: LibraryRoute,
   PathsRoute: PathsRoute,
+  ProfileRoute: ProfileRoute,
+  ReviewRoute: ReviewRoute,
+  SearchRoute: SearchRoute,
+  SettingsRoute: SettingsRoute,
+  TimelineRoute: TimelineRouteWithChildren,
   CategorySlugRoute: CategorySlugRoute,
+  ConceptSlugRoute: ConceptSlugRoute,
   CourseSlugRoute: CourseSlugRoute,
   LessonSlugRoute: LessonSlugRoute,
   PathSlugRoute: PathSlugRoute,
