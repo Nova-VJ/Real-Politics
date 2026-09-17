@@ -50,21 +50,32 @@ const NarrateInput = z.object({
 export const narrate = createServerFn({ method: 'POST' })
   .inputValidator((input: unknown) => NarrateInput.parse(input))
   .handler(async ({ data }) => {
-    const key = process.env['LOVABLE_API_KEY']
-    if (!key) throw new Error('Falta la clave de IA')
+    const p = aiProvider()
     const speed = data.speed < 0.95 ? 'un poco más lento de lo normal' : data.speed > 1.05 ? 'algo más ágil de lo normal' : 'a ritmo natural'
     const prompt = `${toneMap[data.tone]} Habla en español neutro, ${speed}, respetando las pausas de la puntuación.\n\n${data.text}`
-    const res = await fetch(`${GATEWAY}/audio/speech`, {
+    const openaiVoice: Record<string, string> = { femenina: 'shimmer', masculina: 'onyx', epica: 'ballad' }
+    const res = await fetch(`${p.base}/audio/speech`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Lovable-API-Key': key, 'X-Lovable-AIG-SDK': 'fetch' },
-      body: JSON.stringify({
-        model: 'google/gemini-3.1-flash-tts-preview',
-        contents: [{ role: 'user', parts: [{ text: prompt }] }],
-        generationConfig: {
-          responseModalities: ['AUDIO'],
-          speechConfig: { voiceConfig: { prebuiltVoiceConfig: { voiceName: voiceMap[data.voice] ?? 'Kore' } } },
-        },
-      }),
+      headers: p.headers,
+      body: JSON.stringify(
+        p.own
+          ? {
+              model: p.ttsModel,
+              voice: openaiVoice[data.voice] ?? 'shimmer',
+              input: data.text,
+              instructions: `${toneMap[data.tone]} Español neutro, ${speed}.`,
+              response_format: 'mp3',
+              speed: data.speed,
+            }
+          : {
+              model: p.ttsModel,
+              contents: [{ role: 'user', parts: [{ text: prompt }] }],
+              generationConfig: {
+                responseModalities: ['AUDIO'],
+                speechConfig: { voiceConfig: { prebuiltVoiceConfig: { voiceName: voiceMap[data.voice] ?? 'Kore' } } },
+              },
+            },
+      ),
     })
     if (!res.ok) {
       const body = await res.text()
@@ -73,7 +84,7 @@ export const narrate = createServerFn({ method: 'POST' })
     const buf = new Uint8Array(await res.arrayBuffer())
     let binary = ''
     for (let i = 0; i < buf.length; i += 8192) binary += String.fromCharCode(...buf.subarray(i, i + 8192))
-    return { audio: btoa(binary), mime: 'audio/wav' }
+    return { audio: btoa(binary), mime: p.own ? 'audio/mpeg' : 'audio/wav' }
   })
 
 const TutorInput = z.object({
