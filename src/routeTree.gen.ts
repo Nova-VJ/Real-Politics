@@ -12,7 +12,12 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ExploreRouteImport } from './routes/explore'
 import { Route as HomeRouteImport } from './routes/home'
+import { Route as KnowledgeMapRouteImport } from './routes/knowledge-map'
+import { Route as LearnRouteImport } from './routes/learn'
+import { Route as PathsRouteImport } from './routes/paths'
 import { Route as CategorySlugRouteImport } from './routes/category.$slug'
+import { Route as CourseSlugRouteImport } from './routes/course.$slug'
+import { Route as PathSlugRouteImport } from './routes/path.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -29,9 +34,34 @@ const HomeRoute = HomeRouteImport.update({
   path: '/home',
   getParentRoute: () => rootRouteImport,
 } as any)
+const KnowledgeMapRoute = KnowledgeMapRouteImport.update({
+  id: '/knowledge-map',
+  path: '/knowledge-map',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LearnRoute = LearnRouteImport.update({
+  id: '/learn',
+  path: '/learn',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PathsRoute = PathsRouteImport.update({
+  id: '/paths',
+  path: '/paths',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CategorySlugRoute = CategorySlugRouteImport.update({
   id: '/category/$slug',
   path: '/category/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CourseSlugRoute = CourseSlugRouteImport.update({
+  id: '/course/$slug',
+  path: '/course/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PathSlugRoute = PathSlugRouteImport.update({
+  id: '/path/$slug',
+  path: '/path/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -39,34 +69,82 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/explore': typeof ExploreRoute
   '/home': typeof HomeRoute
+  '/knowledge-map': typeof KnowledgeMapRoute
+  '/learn': typeof LearnRoute
+  '/paths': typeof PathsRoute
   '/category/$slug': typeof CategorySlugRoute
+  '/course/$slug': typeof CourseSlugRoute
+  '/path/$slug': typeof PathSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/explore': typeof ExploreRoute
   '/home': typeof HomeRoute
+  '/knowledge-map': typeof KnowledgeMapRoute
+  '/learn': typeof LearnRoute
+  '/paths': typeof PathsRoute
   '/category/$slug': typeof CategorySlugRoute
+  '/course/$slug': typeof CourseSlugRoute
+  '/path/$slug': typeof PathSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/explore': typeof ExploreRoute
   '/home': typeof HomeRoute
+  '/knowledge-map': typeof KnowledgeMapRoute
+  '/learn': typeof LearnRoute
+  '/paths': typeof PathsRoute
   '/category/$slug': typeof CategorySlugRoute
+  '/course/$slug': typeof CourseSlugRoute
+  '/path/$slug': typeof PathSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/explore' | '/home' | '/category/$slug'
+  fullPaths:
+    | '/'
+    | '/explore'
+    | '/home'
+    | '/knowledge-map'
+    | '/learn'
+    | '/paths'
+    | '/category/$slug'
+    | '/course/$slug'
+    | '/path/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/explore' | '/home' | '/category/$slug'
-  id: '__root__' | '/' | '/explore' | '/home' | '/category/$slug'
+  to:
+    | '/'
+    | '/explore'
+    | '/home'
+    | '/knowledge-map'
+    | '/learn'
+    | '/paths'
+    | '/category/$slug'
+    | '/course/$slug'
+    | '/path/$slug'
+  id:
+    | '__root__'
+    | '/'
+    | '/explore'
+    | '/home'
+    | '/knowledge-map'
+    | '/learn'
+    | '/paths'
+    | '/category/$slug'
+    | '/course/$slug'
+    | '/path/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ExploreRoute: typeof ExploreRoute
   HomeRoute: typeof HomeRoute
+  KnowledgeMapRoute: typeof KnowledgeMapRoute
+  LearnRoute: typeof LearnRoute
+  PathsRoute: typeof PathsRoute
   CategorySlugRoute: typeof CategorySlugRoute
+  CourseSlugRoute: typeof CourseSlugRoute
+  PathSlugRoute: typeof PathSlugRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -92,11 +170,46 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof HomeRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/knowledge-map': {
+      id: '/knowledge-map'
+      path: '/knowledge-map'
+      fullPath: '/knowledge-map'
+      preLoaderRoute: typeof KnowledgeMapRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/learn': {
+      id: '/learn'
+      path: '/learn'
+      fullPath: '/learn'
+      preLoaderRoute: typeof LearnRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/paths': {
+      id: '/paths'
+      path: '/paths'
+      fullPath: '/paths'
+      preLoaderRoute: typeof PathsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/category/$slug': {
       id: '/category/$slug'
       path: '/category/$slug'
       fullPath: '/category/$slug'
       preLoaderRoute: typeof CategorySlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/course/$slug': {
+      id: '/course/$slug'
+      path: '/course/$slug'
+      fullPath: '/course/$slug'
+      preLoaderRoute: typeof CourseSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/path/$slug': {
+      id: '/path/$slug'
+      path: '/path/$slug'
+      fullPath: '/path/$slug'
+      preLoaderRoute: typeof PathSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -106,7 +219,12 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ExploreRoute: ExploreRoute,
   HomeRoute: HomeRoute,
+  KnowledgeMapRoute: KnowledgeMapRoute,
+  LearnRoute: LearnRoute,
+  PathsRoute: PathsRoute,
   CategorySlugRoute: CategorySlugRoute,
+  CourseSlugRoute: CourseSlugRoute,
+  PathSlugRoute: PathSlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
