@@ -9,6 +9,8 @@ import {
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
 import { AppProvider } from "../features/app-state";
+import { AuthProvider } from "../features/auth";
+import { AiTutor } from "../components/ai-tutor";
 import { AppShell } from "../components/app-shell";
 
 import appCss from "../styles.css?url";
