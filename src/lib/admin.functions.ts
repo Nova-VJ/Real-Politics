@@ -2,7 +2,6 @@ import { createServerFn } from '@tanstack/react-start'
 import { z } from 'zod'
 import { requireSupabaseAuth } from '@/integrations/supabase/auth-middleware'
 
-type AuthedSupabase = Parameters<Parameters<typeof requireSupabaseAuth.server>[0]> extends never ? never : never
 
 async function assertAdmin(
   supabase: { rpc: (fn: 'has_role', args: { _user_id: string; _role: 'admin' }) => PromiseLike<{ data: boolean | null }> },
