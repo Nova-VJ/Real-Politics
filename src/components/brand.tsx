@@ -1,0 +1,2 @@
+import { Link } from '@tanstack/react-router'
+export function Brand(){return <Link to="/" className="group flex items-center gap-2.5" aria-label="RealPolitics home"><span className="relative grid size-8 place-items-center rounded-full border border-primary/60"><span className="absolute h-4 w-px rotate-45 bg-primary"/><span className="size-1.5 rounded-full bg-primary shadow-gold"/></span><span className="font-sans text-sm font-bold tracking-[0.14em] text-foreground">REALPOLITICS</span></Link>}
