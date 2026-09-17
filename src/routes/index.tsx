@@ -1,24 +1,7 @@
-import { createFileRoute } from "@tanstack/react-router";
-
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
-export const Route = createFileRoute("/")({
-  component: Index,
-});
-
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
-  return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
-  );
-}
+import { createFileRoute,Link } from '@tanstack/react-router'
+import { ArrowRight,BookOpen,Compass,Search } from 'lucide-react'
+import { Brand } from '@/components/brand'
+import { Button } from '@/components/ui/button'
+export const Route=createFileRoute('/')({head:()=>({meta:[{title:'REALPOLITICS — Understand the world. Think for yourself.'},{name:'description',content:'Learn the economics, history, institutions, science and ideas that shape modern society.'},{property:'og:title',content:'REALPOLITICS — Understand the world'},{property:'og:description',content:'The connected learning platform for understanding how the world works.'},{property:'og:type',content:'website'},{name:'twitter:card',content:'summary_large_image'}]}),component:Landing})
+const nodes=[['Inflation','12%','22%'],['Money','24%','62%'],['Federal Reserve','38%','35%'],['Trade','48%','72%'],['Democracy','62%','18%'],['Constitution','75%','39%'],['Industrial Revolution','67%','72%'],['Artificial Intelligence','87%','63%'],['Energy','51%','45%']]
+function Landing(){return <div className="relative min-h-screen overflow-hidden bg-background"><header className="relative z-20 mx-auto flex h-20 max-w-7xl items-center justify-between px-5 lg:px-8"><Brand/><div className="flex items-center gap-2"><Link to="/login" className="hidden px-3 py-2 text-sm text-muted-foreground hover:text-foreground sm:block">Sign in</Link><Button asChild><Link to="/home">Start learning <ArrowRight className="size-4"/></Link></Button></div></header><main className="relative flex min-h-[calc(100vh-5rem)] items-center border-t border-border subtle-grid"><svg className="absolute inset-0 size-full opacity-35" aria-hidden="true"><line x1="24%" y1="62%" x2="38%" y2="35%" stroke="var(--primary)"/><line x1="38%" y1="35%" x2="51%" y2="45%" stroke="var(--government)"/><line x1="48%" y1="72%" x2="67%" y2="72%" stroke="var(--economics)"/><line x1="62%" y1="18%" x2="75%" y2="39%" stroke="var(--government)"/><line x1="67%" y1="72%" x2="87%" y2="63%" stroke="var(--technology)"/></svg>{nodes.map(([name,x,y],i)=><span key={name} className="node-drift absolute hidden rounded-full border border-border bg-surface/80 px-3 py-2 text-xs shadow-xl backdrop-blur md:block" style={{left:x,top:y,animationDelay:`${i*.45}s`}}><i className="mr-2 inline-block size-1.5 rounded-full bg-primary"/>{name}</span>)}<div className="relative z-10 mx-auto w-full max-w-7xl px-5 py-20 lg:px-8"><div className="max-w-3xl"><p className="eyebrow mb-5">Everything connects</p><h1 className="text-balance font-serif text-6xl leading-[.96] md:text-8xl">Understand<br/>the world.</h1><p className="mt-7 max-w-2xl text-lg leading-8 text-muted-foreground md:text-xl">Learn the economics, history, institutions, science and ideas that shape modern society.</p><div className="mt-9 flex flex-col gap-3 sm:flex-row"><Button size="lg" asChild><Link to="/home"><BookOpen className="size-5"/>Start Learning</Link></Button><Button variant="secondary" size="lg" asChild><Link to="/knowledge-map"><Compass className="size-5"/>Explore the Knowledge Map</Link></Button></div></div><div className="mt-20 flex items-center gap-3 border-t border-border pt-6 text-xs text-muted-foreground"><Search className="size-4 text-primary"/>Economics. History. Power. Society. Science. One connected system.</div></div></main></div>}

@@ -10,33 +10,579 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AchievementsRouteImport } from './routes/achievements'
+import { Route as AdminRouteImport } from './routes/admin'
+import { Route as ChallengesRouteImport } from './routes/challenges'
+import { Route as Essential1000RouteImport } from './routes/essential-1000'
+import { Route as ExploreRouteImport } from './routes/explore'
+import { Route as GlossaryRouteImport } from './routes/glossary'
+import { Route as HomeRouteImport } from './routes/home'
+import { Route as KnowledgeMapRouteImport } from './routes/knowledge-map'
+import { Route as LearnRouteImport } from './routes/learn'
+import { Route as LibraryRouteImport } from './routes/library'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as OnboardingRouteImport } from './routes/onboarding'
+import { Route as PathsRouteImport } from './routes/paths'
+import { Route as ProfileRouteImport } from './routes/profile'
+import { Route as ReviewRouteImport } from './routes/review'
+import { Route as SearchRouteImport } from './routes/search'
+import { Route as SettingsRouteImport } from './routes/settings'
+import { Route as SignupRouteImport } from './routes/signup'
+import { Route as TimelineRouteImport } from './routes/timeline'
+import { Route as AdminAnalyticsRouteImport } from './routes/admin.analytics'
+import { Route as AdminConceptsRouteImport } from './routes/admin.concepts'
+import { Route as AdminContentRouteImport } from './routes/admin.content'
+import { Route as AdminCoursesRouteImport } from './routes/admin.courses'
+import { Route as AdminKnowledgeGraphRouteImport } from './routes/admin.knowledge-graph'
+import { Route as AdminLessonsRouteImport } from './routes/admin.lessons'
+import { Route as AdminQuizzesRouteImport } from './routes/admin.quizzes'
+import { Route as AdminScenariosRouteImport } from './routes/admin.scenarios'
+import { Route as AdminSourcesRouteImport } from './routes/admin.sources'
+import { Route as AdminTimelineRouteImport } from './routes/admin.timeline'
+import { Route as AdminTranslationsRouteImport } from './routes/admin.translations'
+import { Route as AdminUsersRouteImport } from './routes/admin.users'
+import { Route as CategorySlugRouteImport } from './routes/category.$slug'
+import { Route as ConceptSlugRouteImport } from './routes/concept.$slug'
+import { Route as CourseSlugRouteImport } from './routes/course.$slug'
+import { Route as InstitutionsSlugRouteImport } from './routes/institutions.$slug'
+import { Route as LessonSlugRouteImport } from './routes/lesson.$slug'
+import { Route as PathSlugRouteImport } from './routes/path.$slug'
+import { Route as PeopleSlugRouteImport } from './routes/people.$slug'
+import { Route as ProfileAchievementsRouteImport } from './routes/profile.achievements'
+import { Route as ProfileKnowledgeRouteImport } from './routes/profile.knowledge'
+import { Route as ProfileStatsRouteImport } from './routes/profile.stats'
+import { Route as TimelineEventSlugRouteImport } from './routes/timeline.$eventSlug'
+import { Route as AdminLessonsNewRouteImport } from './routes/admin.lessons.new'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AchievementsRoute = AchievementsRouteImport.update({
+  id: '/achievements',
+  path: '/achievements',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ChallengesRoute = ChallengesRouteImport.update({
+  id: '/challenges',
+  path: '/challenges',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const Essential1000Route = Essential1000RouteImport.update({
+  id: '/essential-1000',
+  path: '/essential-1000',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ExploreRoute = ExploreRouteImport.update({
+  id: '/explore',
+  path: '/explore',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GlossaryRoute = GlossaryRouteImport.update({
+  id: '/glossary',
+  path: '/glossary',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HomeRoute = HomeRouteImport.update({
+  id: '/home',
+  path: '/home',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KnowledgeMapRoute = KnowledgeMapRouteImport.update({
+  id: '/knowledge-map',
+  path: '/knowledge-map',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LearnRoute = LearnRouteImport.update({
+  id: '/learn',
+  path: '/learn',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LibraryRoute = LibraryRouteImport.update({
+  id: '/library',
+  path: '/library',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OnboardingRoute = OnboardingRouteImport.update({
+  id: '/onboarding',
+  path: '/onboarding',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PathsRoute = PathsRouteImport.update({
+  id: '/paths',
+  path: '/paths',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProfileRoute = ProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReviewRoute = ReviewRouteImport.update({
+  id: '/review',
+  path: '/review',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SearchRoute = SearchRouteImport.update({
+  id: '/search',
+  path: '/search',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SignupRoute = SignupRouteImport.update({
+  id: '/signup',
+  path: '/signup',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TimelineRoute = TimelineRouteImport.update({
+  id: '/timeline',
+  path: '/timeline',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminAnalyticsRoute = AdminAnalyticsRouteImport.update({
+  id: '/analytics',
+  path: '/analytics',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminConceptsRoute = AdminConceptsRouteImport.update({
+  id: '/concepts',
+  path: '/concepts',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminContentRoute = AdminContentRouteImport.update({
+  id: '/content',
+  path: '/content',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminCoursesRoute = AdminCoursesRouteImport.update({
+  id: '/courses',
+  path: '/courses',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminKnowledgeGraphRoute = AdminKnowledgeGraphRouteImport.update({
+  id: '/knowledge-graph',
+  path: '/knowledge-graph',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminLessonsRoute = AdminLessonsRouteImport.update({
+  id: '/lessons',
+  path: '/lessons',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminQuizzesRoute = AdminQuizzesRouteImport.update({
+  id: '/quizzes',
+  path: '/quizzes',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminScenariosRoute = AdminScenariosRouteImport.update({
+  id: '/scenarios',
+  path: '/scenarios',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminSourcesRoute = AdminSourcesRouteImport.update({
+  id: '/sources',
+  path: '/sources',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminTimelineRoute = AdminTimelineRouteImport.update({
+  id: '/timeline',
+  path: '/timeline',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminTranslationsRoute = AdminTranslationsRouteImport.update({
+  id: '/translations',
+  path: '/translations',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminUsersRoute = AdminUsersRouteImport.update({
+  id: '/users',
+  path: '/users',
+  getParentRoute: () => AdminRoute,
+} as any)
+const CategorySlugRoute = CategorySlugRouteImport.update({
+  id: '/category/$slug',
+  path: '/category/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConceptSlugRoute = ConceptSlugRouteImport.update({
+  id: '/concept/$slug',
+  path: '/concept/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CourseSlugRoute = CourseSlugRouteImport.update({
+  id: '/course/$slug',
+  path: '/course/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InstitutionsSlugRoute = InstitutionsSlugRouteImport.update({
+  id: '/institutions/$slug',
+  path: '/institutions/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LessonSlugRoute = LessonSlugRouteImport.update({
+  id: '/lesson/$slug',
+  path: '/lesson/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PathSlugRoute = PathSlugRouteImport.update({
+  id: '/path/$slug',
+  path: '/path/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PeopleSlugRoute = PeopleSlugRouteImport.update({
+  id: '/people/$slug',
+  path: '/people/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProfileAchievementsRoute = ProfileAchievementsRouteImport.update({
+  id: '/achievements',
+  path: '/achievements',
+  getParentRoute: () => ProfileRoute,
+} as any)
+const ProfileKnowledgeRoute = ProfileKnowledgeRouteImport.update({
+  id: '/knowledge',
+  path: '/knowledge',
+  getParentRoute: () => ProfileRoute,
+} as any)
+const ProfileStatsRoute = ProfileStatsRouteImport.update({
+  id: '/stats',
+  path: '/stats',
+  getParentRoute: () => ProfileRoute,
+} as any)
+const TimelineEventSlugRoute = TimelineEventSlugRouteImport.update({
+  id: '/$eventSlug',
+  path: '/$eventSlug',
+  getParentRoute: () => TimelineRoute,
+} as any)
+const AdminLessonsNewRoute = AdminLessonsNewRouteImport.update({
+  id: '/new',
+  path: '/new',
+  getParentRoute: () => AdminLessonsRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/achievements': typeof AchievementsRoute
+  '/admin': typeof AdminRouteWithChildren
+  '/challenges': typeof ChallengesRoute
+  '/essential-1000': typeof Essential1000Route
+  '/explore': typeof ExploreRoute
+  '/glossary': typeof GlossaryRoute
+  '/home': typeof HomeRoute
+  '/knowledge-map': typeof KnowledgeMapRoute
+  '/learn': typeof LearnRoute
+  '/library': typeof LibraryRoute
+  '/login': typeof LoginRoute
+  '/onboarding': typeof OnboardingRoute
+  '/paths': typeof PathsRoute
+  '/profile': typeof ProfileRouteWithChildren
+  '/review': typeof ReviewRoute
+  '/search': typeof SearchRoute
+  '/settings': typeof SettingsRoute
+  '/signup': typeof SignupRoute
+  '/timeline': typeof TimelineRouteWithChildren
+  '/admin/analytics': typeof AdminAnalyticsRoute
+  '/admin/concepts': typeof AdminConceptsRoute
+  '/admin/content': typeof AdminContentRoute
+  '/admin/courses': typeof AdminCoursesRoute
+  '/admin/knowledge-graph': typeof AdminKnowledgeGraphRoute
+  '/admin/lessons': typeof AdminLessonsRouteWithChildren
+  '/admin/quizzes': typeof AdminQuizzesRoute
+  '/admin/scenarios': typeof AdminScenariosRoute
+  '/admin/sources': typeof AdminSourcesRoute
+  '/admin/timeline': typeof AdminTimelineRoute
+  '/admin/translations': typeof AdminTranslationsRoute
+  '/admin/users': typeof AdminUsersRoute
+  '/category/$slug': typeof CategorySlugRoute
+  '/concept/$slug': typeof ConceptSlugRoute
+  '/course/$slug': typeof CourseSlugRoute
+  '/institutions/$slug': typeof InstitutionsSlugRoute
+  '/lesson/$slug': typeof LessonSlugRoute
+  '/path/$slug': typeof PathSlugRoute
+  '/people/$slug': typeof PeopleSlugRoute
+  '/profile/achievements': typeof ProfileAchievementsRoute
+  '/profile/knowledge': typeof ProfileKnowledgeRoute
+  '/profile/stats': typeof ProfileStatsRoute
+  '/timeline/$eventSlug': typeof TimelineEventSlugRoute
+  '/admin/lessons/new': typeof AdminLessonsNewRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/achievements': typeof AchievementsRoute
+  '/admin': typeof AdminRouteWithChildren
+  '/challenges': typeof ChallengesRoute
+  '/essential-1000': typeof Essential1000Route
+  '/explore': typeof ExploreRoute
+  '/glossary': typeof GlossaryRoute
+  '/home': typeof HomeRoute
+  '/knowledge-map': typeof KnowledgeMapRoute
+  '/learn': typeof LearnRoute
+  '/library': typeof LibraryRoute
+  '/login': typeof LoginRoute
+  '/onboarding': typeof OnboardingRoute
+  '/paths': typeof PathsRoute
+  '/profile': typeof ProfileRouteWithChildren
+  '/review': typeof ReviewRoute
+  '/search': typeof SearchRoute
+  '/settings': typeof SettingsRoute
+  '/signup': typeof SignupRoute
+  '/timeline': typeof TimelineRouteWithChildren
+  '/admin/analytics': typeof AdminAnalyticsRoute
+  '/admin/concepts': typeof AdminConceptsRoute
+  '/admin/content': typeof AdminContentRoute
+  '/admin/courses': typeof AdminCoursesRoute
+  '/admin/knowledge-graph': typeof AdminKnowledgeGraphRoute
+  '/admin/lessons': typeof AdminLessonsRouteWithChildren
+  '/admin/quizzes': typeof AdminQuizzesRoute
+  '/admin/scenarios': typeof AdminScenariosRoute
+  '/admin/sources': typeof AdminSourcesRoute
+  '/admin/timeline': typeof AdminTimelineRoute
+  '/admin/translations': typeof AdminTranslationsRoute
+  '/admin/users': typeof AdminUsersRoute
+  '/category/$slug': typeof CategorySlugRoute
+  '/concept/$slug': typeof ConceptSlugRoute
+  '/course/$slug': typeof CourseSlugRoute
+  '/institutions/$slug': typeof InstitutionsSlugRoute
+  '/lesson/$slug': typeof LessonSlugRoute
+  '/path/$slug': typeof PathSlugRoute
+  '/people/$slug': typeof PeopleSlugRoute
+  '/profile/achievements': typeof ProfileAchievementsRoute
+  '/profile/knowledge': typeof ProfileKnowledgeRoute
+  '/profile/stats': typeof ProfileStatsRoute
+  '/timeline/$eventSlug': typeof TimelineEventSlugRoute
+  '/admin/lessons/new': typeof AdminLessonsNewRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/achievements': typeof AchievementsRoute
+  '/admin': typeof AdminRouteWithChildren
+  '/challenges': typeof ChallengesRoute
+  '/essential-1000': typeof Essential1000Route
+  '/explore': typeof ExploreRoute
+  '/glossary': typeof GlossaryRoute
+  '/home': typeof HomeRoute
+  '/knowledge-map': typeof KnowledgeMapRoute
+  '/learn': typeof LearnRoute
+  '/library': typeof LibraryRoute
+  '/login': typeof LoginRoute
+  '/onboarding': typeof OnboardingRoute
+  '/paths': typeof PathsRoute
+  '/profile': typeof ProfileRouteWithChildren
+  '/review': typeof ReviewRoute
+  '/search': typeof SearchRoute
+  '/settings': typeof SettingsRoute
+  '/signup': typeof SignupRoute
+  '/timeline': typeof TimelineRouteWithChildren
+  '/admin/analytics': typeof AdminAnalyticsRoute
+  '/admin/concepts': typeof AdminConceptsRoute
+  '/admin/content': typeof AdminContentRoute
+  '/admin/courses': typeof AdminCoursesRoute
+  '/admin/knowledge-graph': typeof AdminKnowledgeGraphRoute
+  '/admin/lessons': typeof AdminLessonsRouteWithChildren
+  '/admin/quizzes': typeof AdminQuizzesRoute
+  '/admin/scenarios': typeof AdminScenariosRoute
+  '/admin/sources': typeof AdminSourcesRoute
+  '/admin/timeline': typeof AdminTimelineRoute
+  '/admin/translations': typeof AdminTranslationsRoute
+  '/admin/users': typeof AdminUsersRoute
+  '/category/$slug': typeof CategorySlugRoute
+  '/concept/$slug': typeof ConceptSlugRoute
+  '/course/$slug': typeof CourseSlugRoute
+  '/institutions/$slug': typeof InstitutionsSlugRoute
+  '/lesson/$slug': typeof LessonSlugRoute
+  '/path/$slug': typeof PathSlugRoute
+  '/people/$slug': typeof PeopleSlugRoute
+  '/profile/achievements': typeof ProfileAchievementsRoute
+  '/profile/knowledge': typeof ProfileKnowledgeRoute
+  '/profile/stats': typeof ProfileStatsRoute
+  '/timeline/$eventSlug': typeof TimelineEventSlugRoute
+  '/admin/lessons/new': typeof AdminLessonsNewRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/achievements'
+    | '/admin'
+    | '/challenges'
+    | '/essential-1000'
+    | '/explore'
+    | '/glossary'
+    | '/home'
+    | '/knowledge-map'
+    | '/learn'
+    | '/library'
+    | '/login'
+    | '/onboarding'
+    | '/paths'
+    | '/profile'
+    | '/review'
+    | '/search'
+    | '/settings'
+    | '/signup'
+    | '/timeline'
+    | '/admin/analytics'
+    | '/admin/concepts'
+    | '/admin/content'
+    | '/admin/courses'
+    | '/admin/knowledge-graph'
+    | '/admin/lessons'
+    | '/admin/quizzes'
+    | '/admin/scenarios'
+    | '/admin/sources'
+    | '/admin/timeline'
+    | '/admin/translations'
+    | '/admin/users'
+    | '/category/$slug'
+    | '/concept/$slug'
+    | '/course/$slug'
+    | '/institutions/$slug'
+    | '/lesson/$slug'
+    | '/path/$slug'
+    | '/people/$slug'
+    | '/profile/achievements'
+    | '/profile/knowledge'
+    | '/profile/stats'
+    | '/timeline/$eventSlug'
+    | '/admin/lessons/new'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/achievements'
+    | '/admin'
+    | '/challenges'
+    | '/essential-1000'
+    | '/explore'
+    | '/glossary'
+    | '/home'
+    | '/knowledge-map'
+    | '/learn'
+    | '/library'
+    | '/login'
+    | '/onboarding'
+    | '/paths'
+    | '/profile'
+    | '/review'
+    | '/search'
+    | '/settings'
+    | '/signup'
+    | '/timeline'
+    | '/admin/analytics'
+    | '/admin/concepts'
+    | '/admin/content'
+    | '/admin/courses'
+    | '/admin/knowledge-graph'
+    | '/admin/lessons'
+    | '/admin/quizzes'
+    | '/admin/scenarios'
+    | '/admin/sources'
+    | '/admin/timeline'
+    | '/admin/translations'
+    | '/admin/users'
+    | '/category/$slug'
+    | '/concept/$slug'
+    | '/course/$slug'
+    | '/institutions/$slug'
+    | '/lesson/$slug'
+    | '/path/$slug'
+    | '/people/$slug'
+    | '/profile/achievements'
+    | '/profile/knowledge'
+    | '/profile/stats'
+    | '/timeline/$eventSlug'
+    | '/admin/lessons/new'
+  id:
+    | '__root__'
+    | '/'
+    | '/achievements'
+    | '/admin'
+    | '/challenges'
+    | '/essential-1000'
+    | '/explore'
+    | '/glossary'
+    | '/home'
+    | '/knowledge-map'
+    | '/learn'
+    | '/library'
+    | '/login'
+    | '/onboarding'
+    | '/paths'
+    | '/profile'
+    | '/review'
+    | '/search'
+    | '/settings'
+    | '/signup'
+    | '/timeline'
+    | '/admin/analytics'
+    | '/admin/concepts'
+    | '/admin/content'
+    | '/admin/courses'
+    | '/admin/knowledge-graph'
+    | '/admin/lessons'
+    | '/admin/quizzes'
+    | '/admin/scenarios'
+    | '/admin/sources'
+    | '/admin/timeline'
+    | '/admin/translations'
+    | '/admin/users'
+    | '/category/$slug'
+    | '/concept/$slug'
+    | '/course/$slug'
+    | '/institutions/$slug'
+    | '/lesson/$slug'
+    | '/path/$slug'
+    | '/people/$slug'
+    | '/profile/achievements'
+    | '/profile/knowledge'
+    | '/profile/stats'
+    | '/timeline/$eventSlug'
+    | '/admin/lessons/new'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AchievementsRoute: typeof AchievementsRoute
+  AdminRoute: typeof AdminRouteWithChildren
+  ChallengesRoute: typeof ChallengesRoute
+  Essential1000Route: typeof Essential1000Route
+  ExploreRoute: typeof ExploreRoute
+  GlossaryRoute: typeof GlossaryRoute
+  HomeRoute: typeof HomeRoute
+  KnowledgeMapRoute: typeof KnowledgeMapRoute
+  LearnRoute: typeof LearnRoute
+  LibraryRoute: typeof LibraryRoute
+  LoginRoute: typeof LoginRoute
+  OnboardingRoute: typeof OnboardingRoute
+  PathsRoute: typeof PathsRoute
+  ProfileRoute: typeof ProfileRouteWithChildren
+  ReviewRoute: typeof ReviewRoute
+  SearchRoute: typeof SearchRoute
+  SettingsRoute: typeof SettingsRoute
+  SignupRoute: typeof SignupRoute
+  TimelineRoute: typeof TimelineRouteWithChildren
+  CategorySlugRoute: typeof CategorySlugRoute
+  ConceptSlugRoute: typeof ConceptSlugRoute
+  CourseSlugRoute: typeof CourseSlugRoute
+  InstitutionsSlugRoute: typeof InstitutionsSlugRoute
+  LessonSlugRoute: typeof LessonSlugRoute
+  PathSlugRoute: typeof PathSlugRoute
+  PeopleSlugRoute: typeof PeopleSlugRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +594,409 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/achievements': {
+      id: '/achievements'
+      path: '/achievements'
+      fullPath: '/achievements'
+      preLoaderRoute: typeof AchievementsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/challenges': {
+      id: '/challenges'
+      path: '/challenges'
+      fullPath: '/challenges'
+      preLoaderRoute: typeof ChallengesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/essential-1000': {
+      id: '/essential-1000'
+      path: '/essential-1000'
+      fullPath: '/essential-1000'
+      preLoaderRoute: typeof Essential1000RouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/explore': {
+      id: '/explore'
+      path: '/explore'
+      fullPath: '/explore'
+      preLoaderRoute: typeof ExploreRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/glossary': {
+      id: '/glossary'
+      path: '/glossary'
+      fullPath: '/glossary'
+      preLoaderRoute: typeof GlossaryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/home': {
+      id: '/home'
+      path: '/home'
+      fullPath: '/home'
+      preLoaderRoute: typeof HomeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/knowledge-map': {
+      id: '/knowledge-map'
+      path: '/knowledge-map'
+      fullPath: '/knowledge-map'
+      preLoaderRoute: typeof KnowledgeMapRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/learn': {
+      id: '/learn'
+      path: '/learn'
+      fullPath: '/learn'
+      preLoaderRoute: typeof LearnRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/library': {
+      id: '/library'
+      path: '/library'
+      fullPath: '/library'
+      preLoaderRoute: typeof LibraryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/onboarding': {
+      id: '/onboarding'
+      path: '/onboarding'
+      fullPath: '/onboarding'
+      preLoaderRoute: typeof OnboardingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/paths': {
+      id: '/paths'
+      path: '/paths'
+      fullPath: '/paths'
+      preLoaderRoute: typeof PathsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/profile': {
+      id: '/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof ProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/review': {
+      id: '/review'
+      path: '/review'
+      fullPath: '/review'
+      preLoaderRoute: typeof ReviewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/search': {
+      id: '/search'
+      path: '/search'
+      fullPath: '/search'
+      preLoaderRoute: typeof SearchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/signup': {
+      id: '/signup'
+      path: '/signup'
+      fullPath: '/signup'
+      preLoaderRoute: typeof SignupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/timeline': {
+      id: '/timeline'
+      path: '/timeline'
+      fullPath: '/timeline'
+      preLoaderRoute: typeof TimelineRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/analytics': {
+      id: '/admin/analytics'
+      path: '/analytics'
+      fullPath: '/admin/analytics'
+      preLoaderRoute: typeof AdminAnalyticsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/concepts': {
+      id: '/admin/concepts'
+      path: '/concepts'
+      fullPath: '/admin/concepts'
+      preLoaderRoute: typeof AdminConceptsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/content': {
+      id: '/admin/content'
+      path: '/content'
+      fullPath: '/admin/content'
+      preLoaderRoute: typeof AdminContentRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/courses': {
+      id: '/admin/courses'
+      path: '/courses'
+      fullPath: '/admin/courses'
+      preLoaderRoute: typeof AdminCoursesRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/knowledge-graph': {
+      id: '/admin/knowledge-graph'
+      path: '/knowledge-graph'
+      fullPath: '/admin/knowledge-graph'
+      preLoaderRoute: typeof AdminKnowledgeGraphRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/lessons': {
+      id: '/admin/lessons'
+      path: '/lessons'
+      fullPath: '/admin/lessons'
+      preLoaderRoute: typeof AdminLessonsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/quizzes': {
+      id: '/admin/quizzes'
+      path: '/quizzes'
+      fullPath: '/admin/quizzes'
+      preLoaderRoute: typeof AdminQuizzesRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/scenarios': {
+      id: '/admin/scenarios'
+      path: '/scenarios'
+      fullPath: '/admin/scenarios'
+      preLoaderRoute: typeof AdminScenariosRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/sources': {
+      id: '/admin/sources'
+      path: '/sources'
+      fullPath: '/admin/sources'
+      preLoaderRoute: typeof AdminSourcesRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/timeline': {
+      id: '/admin/timeline'
+      path: '/timeline'
+      fullPath: '/admin/timeline'
+      preLoaderRoute: typeof AdminTimelineRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/translations': {
+      id: '/admin/translations'
+      path: '/translations'
+      fullPath: '/admin/translations'
+      preLoaderRoute: typeof AdminTranslationsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/users': {
+      id: '/admin/users'
+      path: '/users'
+      fullPath: '/admin/users'
+      preLoaderRoute: typeof AdminUsersRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/category/$slug': {
+      id: '/category/$slug'
+      path: '/category/$slug'
+      fullPath: '/category/$slug'
+      preLoaderRoute: typeof CategorySlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/concept/$slug': {
+      id: '/concept/$slug'
+      path: '/concept/$slug'
+      fullPath: '/concept/$slug'
+      preLoaderRoute: typeof ConceptSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/course/$slug': {
+      id: '/course/$slug'
+      path: '/course/$slug'
+      fullPath: '/course/$slug'
+      preLoaderRoute: typeof CourseSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/institutions/$slug': {
+      id: '/institutions/$slug'
+      path: '/institutions/$slug'
+      fullPath: '/institutions/$slug'
+      preLoaderRoute: typeof InstitutionsSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lesson/$slug': {
+      id: '/lesson/$slug'
+      path: '/lesson/$slug'
+      fullPath: '/lesson/$slug'
+      preLoaderRoute: typeof LessonSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/path/$slug': {
+      id: '/path/$slug'
+      path: '/path/$slug'
+      fullPath: '/path/$slug'
+      preLoaderRoute: typeof PathSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/people/$slug': {
+      id: '/people/$slug'
+      path: '/people/$slug'
+      fullPath: '/people/$slug'
+      preLoaderRoute: typeof PeopleSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/profile/achievements': {
+      id: '/profile/achievements'
+      path: '/achievements'
+      fullPath: '/profile/achievements'
+      preLoaderRoute: typeof ProfileAchievementsRouteImport
+      parentRoute: typeof ProfileRoute
+    }
+    '/profile/knowledge': {
+      id: '/profile/knowledge'
+      path: '/knowledge'
+      fullPath: '/profile/knowledge'
+      preLoaderRoute: typeof ProfileKnowledgeRouteImport
+      parentRoute: typeof ProfileRoute
+    }
+    '/profile/stats': {
+      id: '/profile/stats'
+      path: '/stats'
+      fullPath: '/profile/stats'
+      preLoaderRoute: typeof ProfileStatsRouteImport
+      parentRoute: typeof ProfileRoute
+    }
+    '/timeline/$eventSlug': {
+      id: '/timeline/$eventSlug'
+      path: '/$eventSlug'
+      fullPath: '/timeline/$eventSlug'
+      preLoaderRoute: typeof TimelineEventSlugRouteImport
+      parentRoute: typeof TimelineRoute
+    }
+    '/admin/lessons/new': {
+      id: '/admin/lessons/new'
+      path: '/new'
+      fullPath: '/admin/lessons/new'
+      preLoaderRoute: typeof AdminLessonsNewRouteImport
+      parentRoute: typeof AdminLessonsRoute
+    }
   }
 }
 
+interface AdminLessonsRouteChildren {
+  AdminLessonsNewRoute: typeof AdminLessonsNewRoute
+}
+
+const AdminLessonsRouteChildren: AdminLessonsRouteChildren = {
+  AdminLessonsNewRoute: AdminLessonsNewRoute,
+}
+
+const AdminLessonsRouteWithChildren = AdminLessonsRoute._addFileChildren(
+  AdminLessonsRouteChildren,
+)
+
+interface AdminRouteChildren {
+  AdminAnalyticsRoute: typeof AdminAnalyticsRoute
+  AdminConceptsRoute: typeof AdminConceptsRoute
+  AdminContentRoute: typeof AdminContentRoute
+  AdminCoursesRoute: typeof AdminCoursesRoute
+  AdminKnowledgeGraphRoute: typeof AdminKnowledgeGraphRoute
+  AdminLessonsRoute: typeof AdminLessonsRouteWithChildren
+  AdminQuizzesRoute: typeof AdminQuizzesRoute
+  AdminScenariosRoute: typeof AdminScenariosRoute
+  AdminSourcesRoute: typeof AdminSourcesRoute
+  AdminTimelineRoute: typeof AdminTimelineRoute
+  AdminTranslationsRoute: typeof AdminTranslationsRoute
+  AdminUsersRoute: typeof AdminUsersRoute
+}
+
+const AdminRouteChildren: AdminRouteChildren = {
+  AdminAnalyticsRoute: AdminAnalyticsRoute,
+  AdminConceptsRoute: AdminConceptsRoute,
+  AdminContentRoute: AdminContentRoute,
+  AdminCoursesRoute: AdminCoursesRoute,
+  AdminKnowledgeGraphRoute: AdminKnowledgeGraphRoute,
+  AdminLessonsRoute: AdminLessonsRouteWithChildren,
+  AdminQuizzesRoute: AdminQuizzesRoute,
+  AdminScenariosRoute: AdminScenariosRoute,
+  AdminSourcesRoute: AdminSourcesRoute,
+  AdminTimelineRoute: AdminTimelineRoute,
+  AdminTranslationsRoute: AdminTranslationsRoute,
+  AdminUsersRoute: AdminUsersRoute,
+}
+
+const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
+
+interface ProfileRouteChildren {
+  ProfileAchievementsRoute: typeof ProfileAchievementsRoute
+  ProfileKnowledgeRoute: typeof ProfileKnowledgeRoute
+  ProfileStatsRoute: typeof ProfileStatsRoute
+}
+
+const ProfileRouteChildren: ProfileRouteChildren = {
+  ProfileAchievementsRoute: ProfileAchievementsRoute,
+  ProfileKnowledgeRoute: ProfileKnowledgeRoute,
+  ProfileStatsRoute: ProfileStatsRoute,
+}
+
+const ProfileRouteWithChildren =
+  ProfileRoute._addFileChildren(ProfileRouteChildren)
+
+interface TimelineRouteChildren {
+  TimelineEventSlugRoute: typeof TimelineEventSlugRoute
+}
+
+const TimelineRouteChildren: TimelineRouteChildren = {
+  TimelineEventSlugRoute: TimelineEventSlugRoute,
+}
+
+const TimelineRouteWithChildren = TimelineRoute._addFileChildren(
+  TimelineRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AchievementsRoute: AchievementsRoute,
+  AdminRoute: AdminRouteWithChildren,
+  ChallengesRoute: ChallengesRoute,
+  Essential1000Route: Essential1000Route,
+  ExploreRoute: ExploreRoute,
+  GlossaryRoute: GlossaryRoute,
+  HomeRoute: HomeRoute,
+  KnowledgeMapRoute: KnowledgeMapRoute,
+  LearnRoute: LearnRoute,
+  LibraryRoute: LibraryRoute,
+  LoginRoute: LoginRoute,
+  OnboardingRoute: OnboardingRoute,
+  PathsRoute: PathsRoute,
+  ProfileRoute: ProfileRouteWithChildren,
+  ReviewRoute: ReviewRoute,
+  SearchRoute: SearchRoute,
+  SettingsRoute: SettingsRoute,
+  SignupRoute: SignupRoute,
+  TimelineRoute: TimelineRouteWithChildren,
+  CategorySlugRoute: CategorySlugRoute,
+  ConceptSlugRoute: ConceptSlugRoute,
+  CourseSlugRoute: CourseSlugRoute,
+  InstitutionsSlugRoute: InstitutionsSlugRoute,
+  LessonSlugRoute: LessonSlugRoute,
+  PathSlugRoute: PathSlugRoute,
+  PeopleSlugRoute: PeopleSlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

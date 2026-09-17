@@ -1,0 +1,5 @@
+import { createFileRoute } from '@tanstack/react-router'
+import { PageHeader } from '@/components/app-shell'
+import { CategoryCard } from '@/components/content-cards'
+import { categories } from '@/data/content'
+export const Route=createFileRoute('/explore')({head:()=>({meta:[{title:'Explore Human Knowledge — REALPOLITICS'},{name:'description',content:'Explore connected fields from economics and history to science and technology.'},{property:'og:title',content:'Explore Human Knowledge — REALPOLITICS'},{property:'og:description',content:'Discover the subjects and connections shaping the modern world.'},{property:'og:type',content:'website'},{name:'twitter:card',content:'summary_large_image'}]}),component:()=> <><PageHeader eyebrow="Discover" title="Explore human knowledge" description="No subject stands alone. Follow a question into the systems, events and ideas connected to it."/><div className="mx-auto grid max-w-7xl gap-px bg-border px-5 py-12 sm:grid-cols-2 lg:grid-cols-3 lg:px-8">{categories.map(c=><CategoryCard key={c.slug} category={c}/>)}</div></>})
