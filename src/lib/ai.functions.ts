@@ -50,7 +50,7 @@ Nunca inventes datos ni cifras; si no lo sabes, dilo.${data.context ? `\nContext
     // ── Gemini (gratuito, generoso) ──────────────────────────────────────
     if (provider === 'gemini') {
       const key = process.env['GEMINI_API_KEY']!
-      const model = 'gemini-2.0-flash'
+      const model = 'gemini-3.6-flash'
       const url = `${GEMINI_BASE}/models/${model}:generateContent?key=${key}`
 
       const contents = [
@@ -187,7 +187,7 @@ export const narrate = createServerFn({ method: 'POST' })
     // ── Gemini TTS (gratuito) ────────────────────────────────────────────
     if (provider === 'gemini') {
       const key   = process.env['GEMINI_API_KEY']!
-      const model = 'gemini-2.5-flash-preview-tts'
+      const model = 'gemini-3.6-flash-preview-tts'
       const url   = `${GEMINI_BASE}/models/${model}:generateContent?key=${key}`
       const prompt = `${toneInst} Habla en español neutro, ${speed}, respetando las pausas de la puntuación.\n\n${data.text}`
 
