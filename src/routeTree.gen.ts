@@ -10,6 +10,8 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AchievementsRouteImport } from './routes/achievements'
+import { Route as AdminRouteImport } from './routes/admin'
 import { Route as ChallengesRouteImport } from './routes/challenges'
 import { Route as Essential1000RouteImport } from './routes/essential-1000'
 import { Route as ExploreRouteImport } from './routes/explore'
@@ -27,16 +29,44 @@ import { Route as SearchRouteImport } from './routes/search'
 import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as SignupRouteImport } from './routes/signup'
 import { Route as TimelineRouteImport } from './routes/timeline'
+import { Route as AdminAnalyticsRouteImport } from './routes/admin.analytics'
+import { Route as AdminConceptsRouteImport } from './routes/admin.concepts'
+import { Route as AdminContentRouteImport } from './routes/admin.content'
+import { Route as AdminCoursesRouteImport } from './routes/admin.courses'
+import { Route as AdminKnowledgeGraphRouteImport } from './routes/admin.knowledge-graph'
+import { Route as AdminLessonsRouteImport } from './routes/admin.lessons'
+import { Route as AdminQuizzesRouteImport } from './routes/admin.quizzes'
+import { Route as AdminScenariosRouteImport } from './routes/admin.scenarios'
+import { Route as AdminSourcesRouteImport } from './routes/admin.sources'
+import { Route as AdminTimelineRouteImport } from './routes/admin.timeline'
+import { Route as AdminTranslationsRouteImport } from './routes/admin.translations'
+import { Route as AdminUsersRouteImport } from './routes/admin.users'
 import { Route as CategorySlugRouteImport } from './routes/category.$slug'
 import { Route as ConceptSlugRouteImport } from './routes/concept.$slug'
 import { Route as CourseSlugRouteImport } from './routes/course.$slug'
+import { Route as InstitutionsSlugRouteImport } from './routes/institutions.$slug'
 import { Route as LessonSlugRouteImport } from './routes/lesson.$slug'
 import { Route as PathSlugRouteImport } from './routes/path.$slug'
+import { Route as PeopleSlugRouteImport } from './routes/people.$slug'
+import { Route as ProfileAchievementsRouteImport } from './routes/profile.achievements'
+import { Route as ProfileKnowledgeRouteImport } from './routes/profile.knowledge'
+import { Route as ProfileStatsRouteImport } from './routes/profile.stats'
 import { Route as TimelineEventSlugRouteImport } from './routes/timeline.$eventSlug'
+import { Route as AdminLessonsNewRouteImport } from './routes/admin.lessons.new'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AchievementsRoute = AchievementsRouteImport.update({
+  id: '/achievements',
+  path: '/achievements',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ChallengesRoute = ChallengesRouteImport.update({
@@ -124,6 +154,66 @@ const TimelineRoute = TimelineRouteImport.update({
   path: '/timeline',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminAnalyticsRoute = AdminAnalyticsRouteImport.update({
+  id: '/analytics',
+  path: '/analytics',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminConceptsRoute = AdminConceptsRouteImport.update({
+  id: '/concepts',
+  path: '/concepts',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminContentRoute = AdminContentRouteImport.update({
+  id: '/content',
+  path: '/content',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminCoursesRoute = AdminCoursesRouteImport.update({
+  id: '/courses',
+  path: '/courses',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminKnowledgeGraphRoute = AdminKnowledgeGraphRouteImport.update({
+  id: '/knowledge-graph',
+  path: '/knowledge-graph',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminLessonsRoute = AdminLessonsRouteImport.update({
+  id: '/lessons',
+  path: '/lessons',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminQuizzesRoute = AdminQuizzesRouteImport.update({
+  id: '/quizzes',
+  path: '/quizzes',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminScenariosRoute = AdminScenariosRouteImport.update({
+  id: '/scenarios',
+  path: '/scenarios',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminSourcesRoute = AdminSourcesRouteImport.update({
+  id: '/sources',
+  path: '/sources',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminTimelineRoute = AdminTimelineRouteImport.update({
+  id: '/timeline',
+  path: '/timeline',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminTranslationsRoute = AdminTranslationsRouteImport.update({
+  id: '/translations',
+  path: '/translations',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminUsersRoute = AdminUsersRouteImport.update({
+  id: '/users',
+  path: '/users',
+  getParentRoute: () => AdminRoute,
+} as any)
 const CategorySlugRoute = CategorySlugRouteImport.update({
   id: '/category/$slug',
   path: '/category/$slug',
@@ -139,6 +229,11 @@ const CourseSlugRoute = CourseSlugRouteImport.update({
   path: '/course/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const InstitutionsSlugRoute = InstitutionsSlugRouteImport.update({
+  id: '/institutions/$slug',
+  path: '/institutions/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LessonSlugRoute = LessonSlugRouteImport.update({
   id: '/lesson/$slug',
   path: '/lesson/$slug',
@@ -149,14 +244,41 @@ const PathSlugRoute = PathSlugRouteImport.update({
   path: '/path/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PeopleSlugRoute = PeopleSlugRouteImport.update({
+  id: '/people/$slug',
+  path: '/people/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProfileAchievementsRoute = ProfileAchievementsRouteImport.update({
+  id: '/achievements',
+  path: '/achievements',
+  getParentRoute: () => ProfileRoute,
+} as any)
+const ProfileKnowledgeRoute = ProfileKnowledgeRouteImport.update({
+  id: '/knowledge',
+  path: '/knowledge',
+  getParentRoute: () => ProfileRoute,
+} as any)
+const ProfileStatsRoute = ProfileStatsRouteImport.update({
+  id: '/stats',
+  path: '/stats',
+  getParentRoute: () => ProfileRoute,
+} as any)
 const TimelineEventSlugRoute = TimelineEventSlugRouteImport.update({
   id: '/$eventSlug',
   path: '/$eventSlug',
   getParentRoute: () => TimelineRoute,
 } as any)
+const AdminLessonsNewRoute = AdminLessonsNewRouteImport.update({
+  id: '/new',
+  path: '/new',
+  getParentRoute: () => AdminLessonsRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/achievements': typeof AchievementsRoute
+  '/admin': typeof AdminRouteWithChildren
   '/challenges': typeof ChallengesRoute
   '/essential-1000': typeof Essential1000Route
   '/explore': typeof ExploreRoute
@@ -168,21 +290,41 @@ export interface FileRoutesByFullPath {
   '/login': typeof LoginRoute
   '/onboarding': typeof OnboardingRoute
   '/paths': typeof PathsRoute
-  '/profile': typeof ProfileRoute
+  '/profile': typeof ProfileRouteWithChildren
   '/review': typeof ReviewRoute
   '/search': typeof SearchRoute
   '/settings': typeof SettingsRoute
   '/signup': typeof SignupRoute
   '/timeline': typeof TimelineRouteWithChildren
+  '/admin/analytics': typeof AdminAnalyticsRoute
+  '/admin/concepts': typeof AdminConceptsRoute
+  '/admin/content': typeof AdminContentRoute
+  '/admin/courses': typeof AdminCoursesRoute
+  '/admin/knowledge-graph': typeof AdminKnowledgeGraphRoute
+  '/admin/lessons': typeof AdminLessonsRouteWithChildren
+  '/admin/quizzes': typeof AdminQuizzesRoute
+  '/admin/scenarios': typeof AdminScenariosRoute
+  '/admin/sources': typeof AdminSourcesRoute
+  '/admin/timeline': typeof AdminTimelineRoute
+  '/admin/translations': typeof AdminTranslationsRoute
+  '/admin/users': typeof AdminUsersRoute
   '/category/$slug': typeof CategorySlugRoute
   '/concept/$slug': typeof ConceptSlugRoute
   '/course/$slug': typeof CourseSlugRoute
+  '/institutions/$slug': typeof InstitutionsSlugRoute
   '/lesson/$slug': typeof LessonSlugRoute
   '/path/$slug': typeof PathSlugRoute
+  '/people/$slug': typeof PeopleSlugRoute
+  '/profile/achievements': typeof ProfileAchievementsRoute
+  '/profile/knowledge': typeof ProfileKnowledgeRoute
+  '/profile/stats': typeof ProfileStatsRoute
   '/timeline/$eventSlug': typeof TimelineEventSlugRoute
+  '/admin/lessons/new': typeof AdminLessonsNewRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/achievements': typeof AchievementsRoute
+  '/admin': typeof AdminRouteWithChildren
   '/challenges': typeof ChallengesRoute
   '/essential-1000': typeof Essential1000Route
   '/explore': typeof ExploreRoute
@@ -194,22 +336,42 @@ export interface FileRoutesByTo {
   '/login': typeof LoginRoute
   '/onboarding': typeof OnboardingRoute
   '/paths': typeof PathsRoute
-  '/profile': typeof ProfileRoute
+  '/profile': typeof ProfileRouteWithChildren
   '/review': typeof ReviewRoute
   '/search': typeof SearchRoute
   '/settings': typeof SettingsRoute
   '/signup': typeof SignupRoute
   '/timeline': typeof TimelineRouteWithChildren
+  '/admin/analytics': typeof AdminAnalyticsRoute
+  '/admin/concepts': typeof AdminConceptsRoute
+  '/admin/content': typeof AdminContentRoute
+  '/admin/courses': typeof AdminCoursesRoute
+  '/admin/knowledge-graph': typeof AdminKnowledgeGraphRoute
+  '/admin/lessons': typeof AdminLessonsRouteWithChildren
+  '/admin/quizzes': typeof AdminQuizzesRoute
+  '/admin/scenarios': typeof AdminScenariosRoute
+  '/admin/sources': typeof AdminSourcesRoute
+  '/admin/timeline': typeof AdminTimelineRoute
+  '/admin/translations': typeof AdminTranslationsRoute
+  '/admin/users': typeof AdminUsersRoute
   '/category/$slug': typeof CategorySlugRoute
   '/concept/$slug': typeof ConceptSlugRoute
   '/course/$slug': typeof CourseSlugRoute
+  '/institutions/$slug': typeof InstitutionsSlugRoute
   '/lesson/$slug': typeof LessonSlugRoute
   '/path/$slug': typeof PathSlugRoute
+  '/people/$slug': typeof PeopleSlugRoute
+  '/profile/achievements': typeof ProfileAchievementsRoute
+  '/profile/knowledge': typeof ProfileKnowledgeRoute
+  '/profile/stats': typeof ProfileStatsRoute
   '/timeline/$eventSlug': typeof TimelineEventSlugRoute
+  '/admin/lessons/new': typeof AdminLessonsNewRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/achievements': typeof AchievementsRoute
+  '/admin': typeof AdminRouteWithChildren
   '/challenges': typeof ChallengesRoute
   '/essential-1000': typeof Essential1000Route
   '/explore': typeof ExploreRoute
@@ -221,23 +383,43 @@ export interface FileRoutesById {
   '/login': typeof LoginRoute
   '/onboarding': typeof OnboardingRoute
   '/paths': typeof PathsRoute
-  '/profile': typeof ProfileRoute
+  '/profile': typeof ProfileRouteWithChildren
   '/review': typeof ReviewRoute
   '/search': typeof SearchRoute
   '/settings': typeof SettingsRoute
   '/signup': typeof SignupRoute
   '/timeline': typeof TimelineRouteWithChildren
+  '/admin/analytics': typeof AdminAnalyticsRoute
+  '/admin/concepts': typeof AdminConceptsRoute
+  '/admin/content': typeof AdminContentRoute
+  '/admin/courses': typeof AdminCoursesRoute
+  '/admin/knowledge-graph': typeof AdminKnowledgeGraphRoute
+  '/admin/lessons': typeof AdminLessonsRouteWithChildren
+  '/admin/quizzes': typeof AdminQuizzesRoute
+  '/admin/scenarios': typeof AdminScenariosRoute
+  '/admin/sources': typeof AdminSourcesRoute
+  '/admin/timeline': typeof AdminTimelineRoute
+  '/admin/translations': typeof AdminTranslationsRoute
+  '/admin/users': typeof AdminUsersRoute
   '/category/$slug': typeof CategorySlugRoute
   '/concept/$slug': typeof ConceptSlugRoute
   '/course/$slug': typeof CourseSlugRoute
+  '/institutions/$slug': typeof InstitutionsSlugRoute
   '/lesson/$slug': typeof LessonSlugRoute
   '/path/$slug': typeof PathSlugRoute
+  '/people/$slug': typeof PeopleSlugRoute
+  '/profile/achievements': typeof ProfileAchievementsRoute
+  '/profile/knowledge': typeof ProfileKnowledgeRoute
+  '/profile/stats': typeof ProfileStatsRoute
   '/timeline/$eventSlug': typeof TimelineEventSlugRoute
+  '/admin/lessons/new': typeof AdminLessonsNewRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/achievements'
+    | '/admin'
     | '/challenges'
     | '/essential-1000'
     | '/explore'
@@ -255,15 +437,35 @@ export interface FileRouteTypes {
     | '/settings'
     | '/signup'
     | '/timeline'
+    | '/admin/analytics'
+    | '/admin/concepts'
+    | '/admin/content'
+    | '/admin/courses'
+    | '/admin/knowledge-graph'
+    | '/admin/lessons'
+    | '/admin/quizzes'
+    | '/admin/scenarios'
+    | '/admin/sources'
+    | '/admin/timeline'
+    | '/admin/translations'
+    | '/admin/users'
     | '/category/$slug'
     | '/concept/$slug'
     | '/course/$slug'
+    | '/institutions/$slug'
     | '/lesson/$slug'
     | '/path/$slug'
+    | '/people/$slug'
+    | '/profile/achievements'
+    | '/profile/knowledge'
+    | '/profile/stats'
     | '/timeline/$eventSlug'
+    | '/admin/lessons/new'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/achievements'
+    | '/admin'
     | '/challenges'
     | '/essential-1000'
     | '/explore'
@@ -281,15 +483,35 @@ export interface FileRouteTypes {
     | '/settings'
     | '/signup'
     | '/timeline'
+    | '/admin/analytics'
+    | '/admin/concepts'
+    | '/admin/content'
+    | '/admin/courses'
+    | '/admin/knowledge-graph'
+    | '/admin/lessons'
+    | '/admin/quizzes'
+    | '/admin/scenarios'
+    | '/admin/sources'
+    | '/admin/timeline'
+    | '/admin/translations'
+    | '/admin/users'
     | '/category/$slug'
     | '/concept/$slug'
     | '/course/$slug'
+    | '/institutions/$slug'
     | '/lesson/$slug'
     | '/path/$slug'
+    | '/people/$slug'
+    | '/profile/achievements'
+    | '/profile/knowledge'
+    | '/profile/stats'
     | '/timeline/$eventSlug'
+    | '/admin/lessons/new'
   id:
     | '__root__'
     | '/'
+    | '/achievements'
+    | '/admin'
     | '/challenges'
     | '/essential-1000'
     | '/explore'
@@ -307,16 +529,36 @@ export interface FileRouteTypes {
     | '/settings'
     | '/signup'
     | '/timeline'
+    | '/admin/analytics'
+    | '/admin/concepts'
+    | '/admin/content'
+    | '/admin/courses'
+    | '/admin/knowledge-graph'
+    | '/admin/lessons'
+    | '/admin/quizzes'
+    | '/admin/scenarios'
+    | '/admin/sources'
+    | '/admin/timeline'
+    | '/admin/translations'
+    | '/admin/users'
     | '/category/$slug'
     | '/concept/$slug'
     | '/course/$slug'
+    | '/institutions/$slug'
     | '/lesson/$slug'
     | '/path/$slug'
+    | '/people/$slug'
+    | '/profile/achievements'
+    | '/profile/knowledge'
+    | '/profile/stats'
     | '/timeline/$eventSlug'
+    | '/admin/lessons/new'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AchievementsRoute: typeof AchievementsRoute
+  AdminRoute: typeof AdminRouteWithChildren
   ChallengesRoute: typeof ChallengesRoute
   Essential1000Route: typeof Essential1000Route
   ExploreRoute: typeof ExploreRoute
@@ -328,7 +570,7 @@ export interface RootRouteChildren {
   LoginRoute: typeof LoginRoute
   OnboardingRoute: typeof OnboardingRoute
   PathsRoute: typeof PathsRoute
-  ProfileRoute: typeof ProfileRoute
+  ProfileRoute: typeof ProfileRouteWithChildren
   ReviewRoute: typeof ReviewRoute
   SearchRoute: typeof SearchRoute
   SettingsRoute: typeof SettingsRoute
@@ -337,8 +579,10 @@ export interface RootRouteChildren {
   CategorySlugRoute: typeof CategorySlugRoute
   ConceptSlugRoute: typeof ConceptSlugRoute
   CourseSlugRoute: typeof CourseSlugRoute
+  InstitutionsSlugRoute: typeof InstitutionsSlugRoute
   LessonSlugRoute: typeof LessonSlugRoute
   PathSlugRoute: typeof PathSlugRoute
+  PeopleSlugRoute: typeof PeopleSlugRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -348,6 +592,20 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/achievements': {
+      id: '/achievements'
+      path: '/achievements'
+      fullPath: '/achievements'
+      preLoaderRoute: typeof AchievementsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/challenges': {
@@ -469,6 +727,90 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TimelineRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/analytics': {
+      id: '/admin/analytics'
+      path: '/analytics'
+      fullPath: '/admin/analytics'
+      preLoaderRoute: typeof AdminAnalyticsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/concepts': {
+      id: '/admin/concepts'
+      path: '/concepts'
+      fullPath: '/admin/concepts'
+      preLoaderRoute: typeof AdminConceptsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/content': {
+      id: '/admin/content'
+      path: '/content'
+      fullPath: '/admin/content'
+      preLoaderRoute: typeof AdminContentRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/courses': {
+      id: '/admin/courses'
+      path: '/courses'
+      fullPath: '/admin/courses'
+      preLoaderRoute: typeof AdminCoursesRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/knowledge-graph': {
+      id: '/admin/knowledge-graph'
+      path: '/knowledge-graph'
+      fullPath: '/admin/knowledge-graph'
+      preLoaderRoute: typeof AdminKnowledgeGraphRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/lessons': {
+      id: '/admin/lessons'
+      path: '/lessons'
+      fullPath: '/admin/lessons'
+      preLoaderRoute: typeof AdminLessonsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/quizzes': {
+      id: '/admin/quizzes'
+      path: '/quizzes'
+      fullPath: '/admin/quizzes'
+      preLoaderRoute: typeof AdminQuizzesRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/scenarios': {
+      id: '/admin/scenarios'
+      path: '/scenarios'
+      fullPath: '/admin/scenarios'
+      preLoaderRoute: typeof AdminScenariosRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/sources': {
+      id: '/admin/sources'
+      path: '/sources'
+      fullPath: '/admin/sources'
+      preLoaderRoute: typeof AdminSourcesRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/timeline': {
+      id: '/admin/timeline'
+      path: '/timeline'
+      fullPath: '/admin/timeline'
+      preLoaderRoute: typeof AdminTimelineRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/translations': {
+      id: '/admin/translations'
+      path: '/translations'
+      fullPath: '/admin/translations'
+      preLoaderRoute: typeof AdminTranslationsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/users': {
+      id: '/admin/users'
+      path: '/users'
+      fullPath: '/admin/users'
+      preLoaderRoute: typeof AdminUsersRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/category/$slug': {
       id: '/category/$slug'
       path: '/category/$slug'
@@ -490,6 +832,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CourseSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/institutions/$slug': {
+      id: '/institutions/$slug'
+      path: '/institutions/$slug'
+      fullPath: '/institutions/$slug'
+      preLoaderRoute: typeof InstitutionsSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/lesson/$slug': {
       id: '/lesson/$slug'
       path: '/lesson/$slug'
@@ -504,6 +853,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PathSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/people/$slug': {
+      id: '/people/$slug'
+      path: '/people/$slug'
+      fullPath: '/people/$slug'
+      preLoaderRoute: typeof PeopleSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/profile/achievements': {
+      id: '/profile/achievements'
+      path: '/achievements'
+      fullPath: '/profile/achievements'
+      preLoaderRoute: typeof ProfileAchievementsRouteImport
+      parentRoute: typeof ProfileRoute
+    }
+    '/profile/knowledge': {
+      id: '/profile/knowledge'
+      path: '/knowledge'
+      fullPath: '/profile/knowledge'
+      preLoaderRoute: typeof ProfileKnowledgeRouteImport
+      parentRoute: typeof ProfileRoute
+    }
+    '/profile/stats': {
+      id: '/profile/stats'
+      path: '/stats'
+      fullPath: '/profile/stats'
+      preLoaderRoute: typeof ProfileStatsRouteImport
+      parentRoute: typeof ProfileRoute
+    }
     '/timeline/$eventSlug': {
       id: '/timeline/$eventSlug'
       path: '/$eventSlug'
@@ -511,8 +888,74 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TimelineEventSlugRouteImport
       parentRoute: typeof TimelineRoute
     }
+    '/admin/lessons/new': {
+      id: '/admin/lessons/new'
+      path: '/new'
+      fullPath: '/admin/lessons/new'
+      preLoaderRoute: typeof AdminLessonsNewRouteImport
+      parentRoute: typeof AdminLessonsRoute
+    }
   }
 }
+
+interface AdminLessonsRouteChildren {
+  AdminLessonsNewRoute: typeof AdminLessonsNewRoute
+}
+
+const AdminLessonsRouteChildren: AdminLessonsRouteChildren = {
+  AdminLessonsNewRoute: AdminLessonsNewRoute,
+}
+
+const AdminLessonsRouteWithChildren = AdminLessonsRoute._addFileChildren(
+  AdminLessonsRouteChildren,
+)
+
+interface AdminRouteChildren {
+  AdminAnalyticsRoute: typeof AdminAnalyticsRoute
+  AdminConceptsRoute: typeof AdminConceptsRoute
+  AdminContentRoute: typeof AdminContentRoute
+  AdminCoursesRoute: typeof AdminCoursesRoute
+  AdminKnowledgeGraphRoute: typeof AdminKnowledgeGraphRoute
+  AdminLessonsRoute: typeof AdminLessonsRouteWithChildren
+  AdminQuizzesRoute: typeof AdminQuizzesRoute
+  AdminScenariosRoute: typeof AdminScenariosRoute
+  AdminSourcesRoute: typeof AdminSourcesRoute
+  AdminTimelineRoute: typeof AdminTimelineRoute
+  AdminTranslationsRoute: typeof AdminTranslationsRoute
+  AdminUsersRoute: typeof AdminUsersRoute
+}
+
+const AdminRouteChildren: AdminRouteChildren = {
+  AdminAnalyticsRoute: AdminAnalyticsRoute,
+  AdminConceptsRoute: AdminConceptsRoute,
+  AdminContentRoute: AdminContentRoute,
+  AdminCoursesRoute: AdminCoursesRoute,
+  AdminKnowledgeGraphRoute: AdminKnowledgeGraphRoute,
+  AdminLessonsRoute: AdminLessonsRouteWithChildren,
+  AdminQuizzesRoute: AdminQuizzesRoute,
+  AdminScenariosRoute: AdminScenariosRoute,
+  AdminSourcesRoute: AdminSourcesRoute,
+  AdminTimelineRoute: AdminTimelineRoute,
+  AdminTranslationsRoute: AdminTranslationsRoute,
+  AdminUsersRoute: AdminUsersRoute,
+}
+
+const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
+
+interface ProfileRouteChildren {
+  ProfileAchievementsRoute: typeof ProfileAchievementsRoute
+  ProfileKnowledgeRoute: typeof ProfileKnowledgeRoute
+  ProfileStatsRoute: typeof ProfileStatsRoute
+}
+
+const ProfileRouteChildren: ProfileRouteChildren = {
+  ProfileAchievementsRoute: ProfileAchievementsRoute,
+  ProfileKnowledgeRoute: ProfileKnowledgeRoute,
+  ProfileStatsRoute: ProfileStatsRoute,
+}
+
+const ProfileRouteWithChildren =
+  ProfileRoute._addFileChildren(ProfileRouteChildren)
 
 interface TimelineRouteChildren {
   TimelineEventSlugRoute: typeof TimelineEventSlugRoute
@@ -528,6 +971,8 @@ const TimelineRouteWithChildren = TimelineRoute._addFileChildren(
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AchievementsRoute: AchievementsRoute,
+  AdminRoute: AdminRouteWithChildren,
   ChallengesRoute: ChallengesRoute,
   Essential1000Route: Essential1000Route,
   ExploreRoute: ExploreRoute,
@@ -539,7 +984,7 @@ const rootRouteChildren: RootRouteChildren = {
   LoginRoute: LoginRoute,
   OnboardingRoute: OnboardingRoute,
   PathsRoute: PathsRoute,
-  ProfileRoute: ProfileRoute,
+  ProfileRoute: ProfileRouteWithChildren,
   ReviewRoute: ReviewRoute,
   SearchRoute: SearchRoute,
   SettingsRoute: SettingsRoute,
@@ -548,8 +993,10 @@ const rootRouteChildren: RootRouteChildren = {
   CategorySlugRoute: CategorySlugRoute,
   ConceptSlugRoute: ConceptSlugRoute,
   CourseSlugRoute: CourseSlugRoute,
+  InstitutionsSlugRoute: InstitutionsSlugRoute,
   LessonSlugRoute: LessonSlugRoute,
   PathSlugRoute: PathSlugRoute,
+  PeopleSlugRoute: PeopleSlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
