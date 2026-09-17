@@ -9,6 +9,8 @@ import {
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
 import { AppProvider } from "../features/app-state";
+import { AuthProvider } from "../features/auth";
+import { AiTutor } from "../components/ai-tutor";
 import { AppShell } from "../components/app-shell";
 
 import appCss from "../styles.css?url";
@@ -122,7 +124,12 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <AppProvider><AppShell><Outlet /></AppShell></AppProvider>
+      <AuthProvider>
+        <AppProvider>
+          <AppShell><Outlet /></AppShell>
+          <AiTutor />
+        </AppProvider>
+      </AuthProvider>
     </QueryClientProvider>
   );
 }
