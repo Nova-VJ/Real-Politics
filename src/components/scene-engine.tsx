@@ -10,9 +10,11 @@ import { Button } from './ui/button'
 function Sun({ still }: { still: boolean }) {
   return (
     <motion.circle
-      cx="640" cy="90" r="34" fill="var(--primary)" opacity={0.9}
-      animate={still ? {} : { r: [34, 38, 34], opacity: [0.85, 1, 0.85] }}
+      cx="640" cy="90" r={34} fill="var(--primary)"
+      initial={{ opacity: 0.85, scale: 1 }}
+      animate={still ? { opacity: 0.9 } : { opacity: [0.8, 1, 0.8], scale: [1, 1.08, 1] }}
       transition={{ duration: 4, repeat: Infinity }}
+      style={{ transformOrigin: '640px 90px' }}
     />
   )
 }
