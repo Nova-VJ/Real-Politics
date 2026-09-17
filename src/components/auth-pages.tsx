@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Link, useNavigate } from '@tanstack/react-router'
 import { Loader2 } from 'lucide-react'
 import { Brand } from './brand'
@@ -7,6 +7,92 @@ import { useAuth } from '@/features/auth'
 import { supabase } from '@/integrations/supabase/client'
 import { areas, levelLabels } from '@/data/areas'
 
+// ── Mapa de conocimiento animado para la pantalla de auth ─────────────────
+const MAP_NODES = [
+  { label: 'Economics',    x: 52, y: 18, r: 2.2 },
+  { label: 'Democracy',    x: 75, y: 28, r: 1.6 },
+  { label: 'Federal Reserve', x: 30, y: 32, r: 1.4 },
+  { label: 'Power',        x: 60, y: 45, r: 1.8 },
+  { label: 'History',      x: 20, y: 55, r: 1.6 },
+  { label: 'Trade',        x: 45, y: 62, r: 1.5 },
+  { label: 'Energy',       x: 72, y: 60, r: 1.4 },
+  { label: 'Institutions', x: 35, y: 78, r: 1.3 },
+  { label: 'Markets',      x: 62, y: 78, r: 1.4 },
+  { label: 'Science',      x: 80, y: 42, r: 1.3 },
+  { label: 'Law',          x: 18, y: 40, r: 1.2 },
+  { label: 'Culture',      x: 50, y: 88, r: 1.2 },
+]
+
+const MAP_EDGES = [
+  [0, 1], [0, 2], [0, 3], [0, 4],
+  [1, 3], [1, 9], [2, 4], [2, 10],
+  [3, 5], [3, 6], [4, 7], [5, 7],
+  [5, 8], [6, 8], [6, 9], [7, 11], [8, 11],
+]
+
+function KnowledgeMapDecoration() {
+  const [active, setActive] = useState(0)
+
+  useEffect(() => {
+    const id = setInterval(() => setActive((a) => (a + 1) % MAP_NODES.length), 1800)
+    return () => clearInterval(id)
+  }, [])
+
+  return (
+    <svg
+      viewBox="0 0 100 100"
+      className="absolute inset-0 h-full w-full"
+      preserveAspectRatio="xMidYMid meet"
+      aria-hidden="true"
+    >
+      {/* Líneas de conexión */}
+      {MAP_EDGES.map(([a, b], i) => {
+        const na = MAP_NODES[a!]!
+        const nb = MAP_NODES[b!]!
+        const isActive = a === active || b === active
+        return (
+          <line
+            key={i}
+            x1={na.x} y1={na.y}
+            x2={nb.x} y2={nb.y}
+            stroke={isActive ? 'hsl(var(--primary))' : 'hsl(var(--border))'}
+            strokeWidth={isActive ? 0.35 : 0.2}
+            strokeOpacity={isActive ? 0.9 : 0.5}
+            style={{ transition: 'stroke 0.6s, stroke-width 0.6s, stroke-opacity 0.6s' }}
+          />
+        )
+      })}
+
+      {/* Nodos */}
+      {MAP_NODES.map((n, i) => {
+        const isActive = i === active
+        return (
+          <g key={n.label} transform={`translate(${n.x},${n.y})`}>
+            <circle
+              r={n.r + (isActive ? 0.8 : 0)}
+              fill={isActive ? 'hsl(var(--primary))' : 'hsl(var(--surface))'}
+              stroke={isActive ? 'hsl(var(--primary))' : 'hsl(var(--border))'}
+              strokeWidth="0.4"
+              style={{ transition: 'all 0.5s' }}
+            />
+            <text
+              y={-n.r - 1.2}
+              textAnchor="middle"
+              fontSize="2.4"
+              fill={isActive ? 'hsl(var(--primary))' : 'hsl(var(--muted-foreground))'}
+              fontFamily="system-ui, sans-serif"
+              style={{ transition: 'fill 0.5s' }}
+            >
+              {n.label}
+            </text>
+          </g>
+        )
+      })}
+    </svg>
+  )
+}
+
+// ── Página de autenticación ────────────────────────────────────────────────
 export function AuthPage({ mode }: { mode: 'login' | 'signup' }) {
   const nav = useNavigate()
   const { signIn, signUp, signInWithGoogle } = useAuth()
@@ -38,6 +124,7 @@ export function AuthPage({ mode }: { mode: 'login' | 'signup' }) {
 
   return (
     <div className="grid min-h-screen lg:grid-cols-2">
+      {/* Columna izquierda — formulario */}
       <div className="flex flex-col p-6 md:p-10">
         <Brand />
         <div className="m-auto w-full max-w-md py-12">
@@ -82,13 +169,23 @@ export function AuthPage({ mode }: { mode: 'login' | 'signup' }) {
           </p>
         </div>
       </div>
-      <div className="hidden items-end bg-surface p-12 subtle-grid lg:flex">
-        <blockquote className="max-w-xl font-serif text-4xl leading-tight">“El conocimiento no es una colección de datos aislados. Es un mapa de relaciones.”</blockquote>
+
+      {/* Columna derecha — mapa de conocimiento animado */}
+      <div className="relative hidden overflow-hidden bg-surface subtle-grid lg:block">
+        <KnowledgeMapDecoration />
+        {/* Gradiente inferior con la cita */}
+        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-surface via-surface/80 to-transparent p-10 pt-24">
+          <p className="text-xs uppercase tracking-widest text-muted-foreground">Everything connects</p>
+          <blockquote className="mt-3 font-serif text-2xl leading-snug text-foreground">
+            "El conocimiento no es una colección de datos aislados. Es un mapa de relaciones."
+          </blockquote>
+        </div>
       </div>
     </div>
   )
 }
 
+// ── Onboarding ────────────────────────────────────────────────────────────
 export function Onboarding() {
   const nav = useNavigate()
   const { user } = useAuth()
