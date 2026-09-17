@@ -97,20 +97,19 @@ const TutorInput = z.object({
 export const askTutor = createServerFn({ method: 'POST' })
   .inputValidator((input: unknown) => TutorInput.parse(input))
   .handler(async ({ data }) => {
-    const key = process.env['LOVABLE_API_KEY']
-    if (!key) throw new Error('Falta la clave de IA')
+    const p = aiProvider()
     const system = `Eres el tutor de REALPOLITICS, una plataforma para entender economía, política e historia.
 Responde en español, en menos de 180 palabras, con tono cercano y didáctico.
 Estructura: idea principal, un ejemplo concreto, y una frase de "error típico" cuando aplique.
 Nunca inventes datos ni cifras; si no lo sabes, dilo.${data.context ? `\nContexto de la lección actual: ${data.context}` : ''}`
-    const res = await fetch(`${GATEWAY}/responses`, {
+    const res = await fetch(`${p.base}/responses`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Lovable-API-Key': key, 'X-Lovable-AIG-SDK': 'fetch' },
+      headers: p.headers,
       body: JSON.stringify({
-        model: 'openai/gpt-6-astra',
+        model: p.chatModel,
         stream: true,
         store: false,
-        reasoning: { effort: 'low', summary: 'auto' },
+        ...(p.own ? {} : { reasoning: { effort: 'low', summary: 'auto' } }),
         instructions: system,
         input: [
           ...(data.history ?? []).map((m) => ({
